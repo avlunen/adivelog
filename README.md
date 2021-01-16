@@ -8,6 +8,7 @@ In this initial release (call it an alpha version), I have fixed some bugs of JD
 The mapping module is done with JxBrowser (https://jxbrowser.support.teamdev.com/support/home), you need to download the JAR files from there, as they are to big to include them here.
 
 The software dependencies are as follows (none of these are included in this code repository):
+
 JFreeChart (https://www.jfree.org/)
 1) jfreechart-1.0.19.jar
 2) jfreechart-1.0.19-swt.jar
