@@ -5,8 +5,6 @@ This is in an early stage, and I am not sure how much time I will have to work o
 
 In this initial release (call it an alpha version), I have fixed some bugs of JDivelog. I also removed the dive planner/deco module from it; personally, I find "hobby" deco planners questionable, and there are many others out there. Instead, I have replaced it with a mapping feature (although the code is still here, but will be removed in the future); which means you can now create a map with your dive sites, provided you have added coordinates to your list of dive sites.
 
-The mapping module is done with JxBrowser (https://jxbrowser.support.teamdev.com/support/home), you need to download the JAR files from there, as they are to big to include them here.
-
 The software dependencies are as follows (none of these are included in this code repository):
 
 JFreeChart (https://www.jfree.org/)
@@ -34,12 +32,6 @@ Comm (http://www.java2s.com/Code/Jar/c/Downloadcomm20jar.htm):
 
 Bluecove (http://www.java2s.com/Code/Jar/b/bluecove.htm)
 1) bluecove-2.1.0.jar
-
-JxBrowser (https://jxbrowser.support.teamdev.com/support/home)
-1) jxbrowser-7.5.jar
-2) jxbrowser-swing-7.5.jar
-3) jxbrowser-win64-7.5.jar
-4) jxmapviewer2-2.5.jar
 
 JMapViewer (https://wiki.openstreetmap.org/wiki/JMapViewer):
 1) JMapView.jar
