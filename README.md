@@ -40,3 +40,6 @@ JxBrowser (https://jxbrowser.support.teamdev.com/support/home)
 2) jxbrowser-swing-7.5.jar
 3) jxbrowser-win64-7.5.jar
 4) jxmapviewer2-2.5.jar
+
+JMapViewer (https://wiki.openstreetmap.org/wiki/JMapViewer):
+1) JMapView.jar
