@@ -192,6 +192,25 @@ public class JDiveLog {
        return maxDepth;
     }
     
+    public Double getMaxDiveTime() {
+    	Double maxDiveTime = Double.valueOf(0.0);
+    	Iterator<JDive> it = dives.iterator();
+
+        while (it.hasNext()) { // iterate through dives, compare depth with previous max. depth
+            JDive dive = it.next();
+            if (dive.getDepth() != null) {
+                UnitConverter c = new UnitConverter(UnitConverter.getSystem(dive.getUnits()), UnitConverter.getDisplaySystem());
+                Double tmp = Double.valueOf(c.convertTime(dive.getDuration()));
+                maxDiveTime = Double.max(tmp, maxDiveTime);
+            }
+        }
+        if (maxDiveTime == null || maxDiveTime.equals(Double.valueOf(0.0))) {
+            return Double.valueOf(0.0);
+        }
+
+    	return maxDiveTime;
+    }
+    
     public BigDecimal getMaxTemperature() {
        BigDecimal maxTemperature = new BigDecimal(0);
        Iterator<JDive> it = dives.iterator();
