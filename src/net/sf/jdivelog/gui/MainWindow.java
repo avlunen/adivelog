@@ -108,6 +108,7 @@ import net.sf.jdivelog.gui.printing.PrintWindow;
 import net.sf.jdivelog.gui.resources.Messages;
 import net.sf.jdivelog.gui.statusbar.StatusBar;
 import net.sf.jdivelog.gui.util.ExtensionFileFilter;
+import net.sf.jdivelog.gui.util.MyTable;
 import net.sf.jdivelog.gui.util.TableSorter;
 import net.sf.jdivelog.model.DiveSite;
 import net.sf.jdivelog.model.JDive;
@@ -463,9 +464,11 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         new MnemonicFactory(this);
         downloadThread = new DiveComputerDownloadThread();
         downloadThread.start();
+        /*
         UIDefaults defaults = UIManager.getLookAndFeelDefaults();
         if (defaults.get("Table.alternateRowColor") == null)
             defaults.put("Table.alternateRowColor", new Color(240, 240, 240));
+            */
     }
 
     private JPanel getJContentPane() {
@@ -1340,14 +1343,16 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
     private JTable getLogBookTable() {
         if (logBookTable == null) {
             logBookModel = new TableSorter(getLogBookTableModel());
-            logBookTable = new JTable();
+            //logBookTable = new JTable();
+            logBookTable = new MyTable();
             logBookTable.setComponentOrientation(java.awt.ComponentOrientation.LEFT_TO_RIGHT);
             logBookTable.setShowVerticalLines(false);
             logBookTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-            logBookTable.setShowGrid(false);
+            logBookTable.setShowGrid(true);
             logBookTable.setShowHorizontalLines(true);
             logBookTable.setModel(logBookModel);
-            logBookTable.setIntercellSpacing(new Dimension(10, 3));
+            //logBookTable.setIntercellSpacing(new Dimension(10, 3));
+            
             TableColumnModel tcm = logBookTable.getColumnModel();
             tcm.getColumn(0).setResizable(true);
             tcm.getColumn(0).setPreferredWidth(40);
@@ -1468,14 +1473,14 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
     private JTable getDiveSiteTable() {
         if (diveSiteTable == null) {
             diveSiteModel = new TableSorter(getDiveSiteTableModel());
-            diveSiteTable = new JTable(diveSiteModel);
+            diveSiteTable = new MyTable();
             diveSiteTable.setComponentOrientation(java.awt.ComponentOrientation.LEFT_TO_RIGHT);
             diveSiteTable.setShowVerticalLines(false);
             diveSiteTable.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-            diveSiteTable.setShowGrid(false);
+            diveSiteTable.setShowGrid(true);
             diveSiteTable.setShowHorizontalLines(true);
             diveSiteTable.setModel(diveSiteModel);
-            diveSiteTable.setIntercellSpacing(new Dimension(10, 3));
+            //diveSiteTable.setIntercellSpacing(new Dimension(10, 3));
             diveSiteModel.addMouseListenerToHeader(diveSiteTable);
             diveSiteTable.addKeyListener(new KeyListener() {
                 public void keyTyped(KeyEvent e) {
