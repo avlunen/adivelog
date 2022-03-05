@@ -73,6 +73,8 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableColumnModel;
@@ -136,6 +138,7 @@ import net.sf.jdivelog.util.UnitConverter;
  * @version 2.18
  * @author avl
  * @version 2.5
+ * @version 2.51
  */
 public class MainWindow extends JFrame implements ActionListener, CommandManagerListener, WindowListener,
         LogbookChangeListener, LogbookReference {
@@ -460,6 +463,9 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         new MnemonicFactory(this);
         downloadThread = new DiveComputerDownloadThread();
         downloadThread.start();
+        UIDefaults defaults = UIManager.getLookAndFeelDefaults();
+        if (defaults.get("Table.alternateRowColor") == null)
+            defaults.put("Table.alternateRowColor", new Color(240, 240, 240));
     }
 
     private JPanel getJContentPane() {
