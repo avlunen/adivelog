@@ -1,6 +1,8 @@
 # ADivelog
 This is a customized version of JDivelog (https://sourceforge.net/projects/jdivelog/). Development of JDivelog seems to have ceased, and I found it had some bugs and could do with a feature update.
 
+If you just want to run the app, download 'adivelog.jar' to your computer and double-click on it (JRE needs to be installed on your computer). All dependencies are packaged into the JAR file.
+
 This is in an early stage, and I am not sure how much time I will have to work on this. On the other hand, the main motivation to create this spin-off was that I wanted a dive log app that is less over-blown than others, such as Subsurface, but something nice, small and simple.
 
 In this initial release (call it an alpha version), I have fixed some bugs of JDivelog. I also removed the dive planner/deco module from it; personally, I find "hobby" deco planners questionable, and there are many others out there. Instead, I have replaced it with a mapping feature (although the code is still here, but will be removed in the future); which means you can now create a map with your dive sites, provided you have added coordinates to your list of dive sites.
