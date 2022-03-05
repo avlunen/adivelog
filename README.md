@@ -34,4 +34,7 @@ Bluecove (http://www.java2s.com/Code/Jar/b/bluecove.htm)
 1) bluecove-2.1.0.jar
 
 JMapViewer (https://wiki.openstreetmap.org/wiki/JMapViewer):
-1) JMapView.jar
+1) JMapView.jar (2.5)
+
+ANT LaTeX (https://sourceforge.net/projects/antlatex.berlios/)
+1) ant_latex_0.0.9_1.jar
