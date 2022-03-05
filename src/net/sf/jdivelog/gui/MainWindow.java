@@ -25,7 +25,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
-import java.awt.Event;
+import java.awt.event.InputEvent;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -607,7 +607,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             undoMenuItem.setIcon(new ImageIcon(MainWindow.class
                     .getResource("/net/sf/jdivelog/gui/resources/icons_16x16/edit-undo.png")));
             undoMenuItem.setText(Messages.getString("undo")); //$NON-NLS-1$
-            undoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, java.awt.Event.CTRL_MASK, true));
+            undoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, InputEvent.CTRL_DOWN_MASK, true));
             undoMenuItem.setEnabled(commandManager.canUndo());
             undoMenuItem.addActionListener(this);
         }
@@ -620,7 +620,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             redoMenuItem.setIcon(new ImageIcon(MainWindow.class
                     .getResource("/net/sf/jdivelog/gui/resources/icons_16x16/edit-redo.png")));
             redoMenuItem.setText(Messages.getString("redo")); //$NON-NLS-1$
-            redoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, java.awt.Event.CTRL_MASK, true));
+            redoMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, InputEvent.CTRL_DOWN_MASK, true));
             redoMenuItem.setEnabled(commandManager.canRedo());
             redoMenuItem.addActionListener(this);
         }
@@ -633,7 +633,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             renumberingMenuItem.setIcon(new ImageIcon(MainWindow.class
                     .getResource("/net/sf/jdivelog/gui/resources/icons_16x16/renumbering.png")));
             renumberingMenuItem.setText(Messages.getString("renumbering")); //$NON-NLS-1$
-            renumberingMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, Event.CTRL_MASK, true));
+            renumberingMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_DOWN_MASK, true));
             renumberingMenuItem.addActionListener(this);
         }
         return renumberingMenuItem;
@@ -645,7 +645,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             openMenuItem.setIcon(new ImageIcon(MainWindow.class
                     .getResource("/net/sf/jdivelog/gui/resources/icons_16x16/document-open.png")));
             openMenuItem.setText(Messages.getString("open_file")); //$NON-NLS-1$
-            openMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, Event.CTRL_MASK, true));
+            openMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK, true));
             openMenuItem.addActionListener(this);
         }
         return openMenuItem;
@@ -657,7 +657,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             newMenuItem.setIcon(new ImageIcon(MainWindow.class
                     .getResource("/net/sf/jdivelog/gui/resources/icons_16x16/document-new.png")));
             newMenuItem.setText(Messages.getString("new_file")); //$NON-NLS-1$
-            newMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, Event.CTRL_MASK, true));
+            newMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK, true));
             newMenuItem.addActionListener(this);
         }
         return newMenuItem;
@@ -669,7 +669,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             printMenuItem.setIcon(new ImageIcon(MainWindow.class
                     .getResource("/net/sf/jdivelog/gui/resources/icons_16x16/document-print.png")));
             printMenuItem.setText(Messages.getString("print")); //$NON-NLS-1$
-            printMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, Event.CTRL_MASK, true));
+            printMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK, true));
             printMenuItem.addActionListener(this);
         }
         return printMenuItem;
@@ -689,7 +689,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         if (importWLOGMenuItem == null) {
             importWLOGMenuItem = new JMenuItem();
             importWLOGMenuItem.setText(Messages.getString("import_WLOG_file")); //$NON-NLS-1$
-            importWLOGMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, Event.CTRL_MASK, true));
+            importWLOGMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, InputEvent.CTRL_DOWN_MASK, true));
             importWLOGMenuItem.addActionListener(this);
         }
         return importWLOGMenuItem;
@@ -699,7 +699,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         if (importAladinMenuItem == null) {
             importAladinMenuItem = new JMenuItem();
             importAladinMenuItem.setText(Messages.getString("import_Aladin_file")); //$NON-NLS-1$
-            importAladinMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, Event.CTRL_MASK, true));
+            importAladinMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_DOWN_MASK, true));
             importAladinMenuItem.addActionListener(this);
         }
         return importAladinMenuItem;
@@ -709,7 +709,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         if (importJDivelogMenuItem == null) {
             importJDivelogMenuItem = new JMenuItem();
             importJDivelogMenuItem.setText(Messages.getString("import_JDivelog_file")); //$NON-NLS-1$
-            importJDivelogMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, Event.CTRL_MASK, true));
+            importJDivelogMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.CTRL_DOWN_MASK, true));
             importJDivelogMenuItem.addActionListener(this);
         }
         return importJDivelogMenuItem;
@@ -800,7 +800,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         if (importDataTrakMenuItem == null) {
             importDataTrakMenuItem = new JMenuItem();
             importDataTrakMenuItem.setText(Messages.getString("import_DataTrak_file")); //$NON-NLS-1$
-            importDataTrakMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, Event.CTRL_MASK, true));
+            importDataTrakMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK, true));
             importDataTrakMenuItem.addActionListener(this);
         }
         return importDataTrakMenuItem;
@@ -889,7 +889,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             saveMenuItem.setIcon(new ImageIcon(MainWindow.class
                     .getResource("/net/sf/jdivelog/gui/resources/icons_16x16/document-save.png")));
             saveMenuItem.setText(Messages.getString("save")); //$NON-NLS-1$
-            saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK, true));
+            saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK, true));
             saveMenuItem.addActionListener(this);
         }
         return saveMenuItem;
@@ -911,7 +911,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         if (salinityFixMenuItem == null) {
             salinityFixMenuItem = new JMenuItem();
             salinityFixMenuItem.setText(Messages.getString("salinityfix.menuitem"));
-            salinityFixMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Event.CTRL_MASK + Event.ALT_MASK,
+            salinityFixMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK + InputEvent.ALT_DOWN_MASK,
                     true));
             salinityFixMenuItem.addActionListener(this);
         }
