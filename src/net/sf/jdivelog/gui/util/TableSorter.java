@@ -58,7 +58,7 @@ public class TableSorter extends AbstractTableModel implements TableModelListene
     protected int fixedRows[];
 
     /** Indicates if sort order is ascending or descending */
-    protected boolean asc = true;
+    protected boolean asc = false;
 
     /** indicates if the table sorting is enabled or not */
     protected boolean sortTable = true;
@@ -260,7 +260,7 @@ public class TableSorter extends AbstractTableModel implements TableModelListene
     public Object getValueAt(int row, int col) {
         if (displayNumbering) {
             if (col == 0)
-                return new Integer(row + 1);
+                return Integer.valueOf(row + 1);
             return model.getValueAt(indexList[row], col - 1);
         }
         return model.getValueAt(indexList[row], col);

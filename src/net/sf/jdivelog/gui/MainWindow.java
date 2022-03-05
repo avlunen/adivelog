@@ -595,7 +595,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             aboutMenuItem.setText(Messages.getString("about")); //$NON-NLS-1$
             aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
-                    String message = "ADiveLog "+ Messages.getString("aversion") + "\n(c) 2020 Alexander von Lünen <avl1@gmx.de>\nderived from\n" + //$NON-NLS-1$ 
+                    String message = "ADiveLog "+ Messages.getString("aversion") + "\n(c) 2020 - 2022 Alexander von Lünen <avl1@gmx.de>\nderived from\n" + //$NON-NLS-1$ 
                             "JDiveLog "+ Messages.getString("version") + "\nhttp://www.jdivelog.org/\n\nCopyright (C) 2005 - 2009 Pascal Pellmont <jdivelog@ppo2.ch>\n"+
                             "JDiveLog is distributed under the terms of the GPL v2.\n\n" + //$NON-NLS-1$
                             "JDiveLog comes with ABSOLUTELY NO WARRANTY!\n\nBe sure you have read and understand the LICENSE file."; //$NON-NLS-1$
@@ -1337,7 +1337,6 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         return logBookTablePane;
     }
 
-    // BUBU
     private JTable getLogBookTable() {
         if (logBookTable == null) {
             logBookModel = new TableSorter(getLogBookTableModel());
@@ -2254,7 +2253,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
     }
 
     private void importJDiveLog() {
-        ExtensionFileFilter ff = new ExtensionFileFilter(Messages.getString("JDiveLog_files"), "jlb"); //$NON-NLS-1$
+        ExtensionFileFilter ff = new ExtensionFileFilter(Messages.getString("ADiveLog_files"), "jlb"); //$NON-NLS-1$
         ff.addExtension("jlb"); //$NON-NLS-1$
         FileChooser fc = new FileChooser();
         fc.setMultiSelectionEnabled(false);
@@ -2610,7 +2609,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
 
     public void logbookChanged(LogbookChangeEvent e) {
         updateHeaderData();
-        StringBuffer sb = new StringBuffer(Messages.getString("jdivelog")); //$NON-NLS-1$
+        StringBuffer sb = new StringBuffer(Messages.getString("adivelog")); //$NON-NLS-1$
         sb.append(" "); //$NON-NLS-1$
         if (this.getFile() != null) {
             sb.append(this.getFile().getName());
