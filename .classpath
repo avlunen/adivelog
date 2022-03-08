@@ -14,7 +14,6 @@
 	<classpathentry kind="lib" path="D:/dev/jar/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="D:/dev/jar/commons-digester-2.1.jar"/>
 	<classpathentry kind="lib" path="D:/dev/jar/fop.jar"/>
-	<classpathentry kind="lib" path="D:/dev/jar/batik-all-1.7.jar"/>
 	<classpathentry kind="lib" path="D:/dev/jar/commons-io-2.5.jar"/>
 	<classpathentry kind="lib" path="D:/dev/jar/commons-lang-2.5.jar"/>
 	<classpathentry kind="lib" path="D:/dev/jar/commons-logging-1.1.1.jar"/>
@@ -26,5 +25,6 @@
 	<classpathentry kind="lib" path="D:/dev/jar/pixelitor_4.0.2.jar"/>
 	<classpathentry kind="lib" path="D:/dev/jar/jcommon-xml-1.0.23.jar"/>
 	<classpathentry kind="lib" path="D:/dev/jar/ant_latex_0.0.9_1.jar"/>
+	<classpathentry kind="lib" path="D:/dev/jar/batik-all-1.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

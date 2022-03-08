@@ -262,8 +262,6 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
 
     private StatisticPanel statisticPanel = null;
 
-    private DivePlanningPanel diveplanningPanel = null;
-
     private GasBlendingPanel gasBlendingPanel = null;
 
     private GasOverflowPanel gasOverflowPanel = null;
@@ -1343,7 +1341,6 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
     private JTable getLogBookTable() {
         if (logBookTable == null) {
             logBookModel = new TableSorter(getLogBookTableModel());
-            //logBookTable = new JTable();
             logBookTable = new MyTable();
             logBookTable.setComponentOrientation(java.awt.ComponentOrientation.LEFT_TO_RIGHT);
             logBookTable.setShowVerticalLines(false);
@@ -1351,7 +1348,6 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             logBookTable.setShowGrid(true);
             logBookTable.setShowHorizontalLines(true);
             logBookTable.setModel(logBookModel);
-            //logBookTable.setIntercellSpacing(new Dimension(10, 3));
             
             TableColumnModel tcm = logBookTable.getColumnModel();
             tcm.getColumn(0).setResizable(true);
@@ -1480,7 +1476,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             diveSiteTable.setShowGrid(true);
             diveSiteTable.setShowHorizontalLines(true);
             diveSiteTable.setModel(diveSiteModel);
-            //diveSiteTable.setIntercellSpacing(new Dimension(10, 3));
+
             diveSiteModel.addMouseListenerToHeader(diveSiteTable);
             diveSiteTable.addKeyListener(new KeyListener() {
                 public void keyTyped(KeyEvent e) {
@@ -1634,13 +1630,6 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
    }
    // end of avl
     
-    public DivePlanningPanel getDivePlanningPanel() {
-        if (diveplanningPanel == null) {
-            diveplanningPanel = new DivePlanningPanel(this);
-        }
-        return diveplanningPanel;
-    }
-
     public GasBlendingPanel getGasBlendingPanel() {
         if (gasBlendingPanel == null) {
             gasBlendingPanel = new GasBlendingPanel(this);
