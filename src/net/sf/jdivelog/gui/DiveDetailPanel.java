@@ -142,7 +142,7 @@ public class DiveDetailPanel extends JPanel implements ActionListener, ItemListe
     private PictureTableModel pictureTableModel = null;
     private Masterdata masterdata = null;
     private JLabel labelSet;
-    private JComboBox fieldSet;
+    private JComboBox<String> fieldSet;
     private final boolean readonly;
     private PopupMenu popupMenu;
     private MenuItem compareMenuItem;
@@ -1059,7 +1059,7 @@ public class DiveDetailPanel extends JPanel implements ActionListener, ItemListe
         return fieldComment;
     }
 
-    private JComboBox getFieldSet() {
+    private JComboBox<String> getFieldSet() {
         if (fieldSet == null) {
             Vector<String> setNames = new Vector<String>();
             setNames.add("");
@@ -1068,7 +1068,7 @@ public class DiveDetailPanel extends JPanel implements ActionListener, ItemListe
                     setNames.add(equipmentSet.getName());
                 }
             }
-            fieldSet = new JComboBox(setNames);
+            fieldSet = new JComboBox<String>(setNames);
             fieldSet.setName("fieldSet"); //$NON-NLS-1$
             fieldSet.setBounds(88, 5, 250, 19);
             fieldSet.addItemListener(this);

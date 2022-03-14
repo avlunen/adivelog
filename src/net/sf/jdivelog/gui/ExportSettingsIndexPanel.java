@@ -46,7 +46,7 @@ public class ExportSettingsIndexPanel extends AbstractSettingsPanel {
     private ExportSettings settings;
     private JTextField indexPageTitle = null;
     private JCheckBox groupByYear = null;
-    private JComboBox indexImageSelection = null;
+    private JComboBox<?> indexImageSelection = null;
     private JPanel indexShowGroup = null;
     private JCheckBox indexShowCity = null;
     private JCheckBox indexShowCountry = null;
@@ -128,9 +128,9 @@ public class ExportSettingsIndexPanel extends AbstractSettingsPanel {
         return groupByYear;
     }
     
-    private JComboBox getIndexImageSelection() {
+    private JComboBox<?> getIndexImageSelection() {
         if (indexImageSelection == null) {
-            indexImageSelection = new JComboBox(new String[] { Messages.getString("indeximage_none"), Messages.getString("indeximage_profile"), Messages.getString("indeximage_image") }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            indexImageSelection = new JComboBox<Object>(new String[] { Messages.getString("indeximage_none"), Messages.getString("indeximage_profile"), Messages.getString("indeximage_image") }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
         return indexImageSelection;
     }

@@ -72,6 +72,7 @@ public class SDM2FileLoader {
             SDM2Dive dive = (SDM2Dive)d.parse(is);
             dives.add(dive);
         }
+        zf.close();
     }
     
     public TreeSet<SDM2Dive> getDives() {

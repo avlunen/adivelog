@@ -132,10 +132,12 @@ public class OSTCFlashTool {
         return success;
     }
     
-    private void parseFile() throws InvalidAddressException, NoStartException, IOException, ParseException {
+    @SuppressWarnings("resource")
+	private void parseFile() throws InvalidAddressException, NoStartException, IOException, ParseException {
         blocks = new Block[BLOCKCOUNT];
         int offset = 0;
         BufferedReader reader = new BufferedReader(new FileReader(firmwareFile));
+        
         for (String line = reader.readLine(); line != null; line = reader.readLine()) {
             Object o = parseLine(line);
             if (o instanceof Data) {
@@ -150,17 +152,21 @@ public class OSTCFlashTool {
                     if (BLOCKSIZE - (ptr+d.values.length) >= 0) {
                         // all fits in this block
                         System.arraycopy(d.values, 0, blocks[blocknum].data, ptr, d.values.length);
-                    } else {
+                    }
+                    else {
                         throw new InternalError("splitting of data packets into 2 blocks not yet supported!");
                     }
-                } else {
+                }
+                else {
                     LOGGER.warning("ignoring data on address "+Hexadecimal.valueOf(addr));
                 }
-            } else if (o instanceof Offset) {
+            }
+            else if (o instanceof Offset) {
                 Offset off = (Offset) o;
                 offset = off.value;
             }
         }
+        reader.close();
 
         // initialize last block (will be referenced by bootloader)
         if (blocks[BLOCKCOUNT-1] != null) {
@@ -392,7 +398,8 @@ public class OSTCFlashTool {
             this.value = value;
         }
         
-        public int getValue() {
+        @SuppressWarnings("unused")
+		public int getValue() {
             return value;
         }
         
@@ -405,10 +412,12 @@ public class OSTCFlashTool {
             this.address = address;
             this.values = values;
         }
-        public int getAddress() {
+        @SuppressWarnings("unused")
+		public int getAddress() {
             return address;
         }
-        public byte[] getValues() {
+        @SuppressWarnings("unused")
+		public byte[] getValues() {
             return values;
         }
     }

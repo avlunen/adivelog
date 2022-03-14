@@ -64,7 +64,7 @@ public class OSTCFlashPanel extends JPanel implements ActionListener {
     private final MainWindow mainWindow;
     private JPanel hintPanel;
     private JPanel mainPanel;
-    private JComboBox portField;
+    private JComboBox<String> portField;
     private JTextField fileField;
     private JButton fileButton;
     private File selectedFirmware;
@@ -176,7 +176,7 @@ public class OSTCFlashPanel extends JPanel implements ActionListener {
         return buttonPanel;
     }
     
-    private JComboBox getPortField() {
+    private JComboBox<String> getPortField() {
         if (portField == null) {
             Vector<String> availablePorts = new Vector<String>();
             Iterator<CommPortIdentifier> it = CommUtil.getInstance().getPortIdentifiers();
@@ -184,7 +184,7 @@ public class OSTCFlashPanel extends JPanel implements ActionListener {
                 CommPortIdentifier cpId = it.next();
                 availablePorts.add(cpId.getName());
             }
-            portField = new JComboBox(availablePorts);
+            portField = new JComboBox<String>(availablePorts);
         }
         return portField;
     }

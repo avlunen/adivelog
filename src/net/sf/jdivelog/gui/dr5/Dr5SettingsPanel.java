@@ -73,8 +73,8 @@ import net.sf.jdivelog.model.dr5.Dr5SettingsBuehlmann;
 import net.sf.jdivelog.model.dr5.Dr5SettingsStorage;
 
 public class Dr5SettingsPanel extends JPanel implements LogbookChangeListener {
-
-    private static final int NUM_MIXES = 12;
+	private static final long serialVersionUID = 1129868946229604365L;
+	private static final int NUM_MIXES = 12;
     private final LogbookReference logbookRef;
     private int line;
     private JButton loadSettingsButton;
@@ -84,16 +84,16 @@ public class Dr5SettingsPanel extends JPanel implements LogbookChangeListener {
     private JButton setDateButton;
     private JCheckBox flipScreen;
     private JCheckBox flipScreenNextStart;
-    private JComboBox brightMin;
-    private JComboBox brightMax;
-    private JComboBox defaultView;
-    private JComboBox defaultCcrView;
+    private JComboBox<Integer> brightMin;
+    private JComboBox<Integer> brightMax;
+    private JComboBox<Dr5DiveView> defaultView;
+    private JComboBox<Dr5DiveView> defaultCcrView;
     private JFormattedTextField defaultFallback;
     private JTextField dr5PathField;
     private JButton dr5PathButton;
     private MixField[] mix;
     private JPanel settingsPanel;
-    private JComboBox mode;
+    private JComboBox<DiveMode> mode;
     private JFormattedTextField normalGfLo;
     private JFormattedTextField normalGfHi;
     private JFormattedTextField emergencyGfLo;
@@ -166,9 +166,9 @@ public class Dr5SettingsPanel extends JPanel implements LogbookChangeListener {
         addLine("safety_distance_to_decostop", getSafetyDistanceDecoStop());
     }
 
-    private JComboBox getMode() {
+    private JComboBox<DiveMode> getMode() {
         if (mode == null) {
-            mode = new JComboBox(DiveMode.values());
+            mode = new JComboBox<DiveMode>(DiveMode.values());
         }
         return mode;
     }
@@ -454,35 +454,35 @@ public class Dr5SettingsPanel extends JPanel implements LogbookChangeListener {
         return flipScreenNextStart;
     }
 
-    private JComboBox getBrightMin() {
+    private JComboBox<Integer> getBrightMin() {
         if (brightMin == null) {
-            brightMin = new JComboBox(new Object[] { 0, 1, 2, 3 });
+            brightMin = new JComboBox<Integer>(new Integer[] { 0, 1, 2, 3 });
         }
         return brightMin;
     }
 
-    private JComboBox getBrightMax() {
+    private JComboBox<Integer> getBrightMax() {
         if (brightMax == null) {
-            brightMax = new JComboBox(new Object[] { 0, 1, 2, 3 });
+            brightMax = new JComboBox<Integer>(new Integer[] { 0, 1, 2, 3 });
         }
         return brightMax;
     }
 
-    private JComboBox getDefaultView() {
+    private JComboBox<Dr5DiveView> getDefaultView() {
         if (defaultView == null) {
-            defaultView = new JComboBox(createViewList());
+            defaultView = new JComboBox<Dr5DiveView>(createViewList());
         }
         return defaultView;
     }
 
-    private JComboBox getDefaultCcrView() {
+    private JComboBox<Dr5DiveView> getDefaultCcrView() {
         if (defaultCcrView == null) {
-            defaultCcrView = new JComboBox(createViewList());
+            defaultCcrView = new JComboBox<Dr5DiveView>(createViewList());
         }
         return defaultCcrView;
     }
 
-    private Object[] createViewList() {
+    private Dr5DiveView[] createViewList() {
         return Dr5Settings.Dr5DiveView.values();
     }
 

@@ -66,7 +66,7 @@ public class JMonthChooser extends JPanel implements ItemListener,
 
 	private JYearChooser yearChooser;
 
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 
 	private JSpinner spinner;
 
@@ -94,7 +94,7 @@ public class JMonthChooser extends JPanel implements ItemListener,
 
 		setLayout(new BorderLayout());
 
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		comboBox.addItemListener(this);
 
 		// comboBox.addPopupMenuListener(this);

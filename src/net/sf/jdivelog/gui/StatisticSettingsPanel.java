@@ -43,18 +43,18 @@ public class StatisticSettingsPanel extends AbstractSettingsPanel {
     private MainWindow mainWindow;
     private StatisticSettings settings;
     
-    private JComboBox buddyStatisticTypeField;
-    private JComboBox buddyStatisticOrientationField;
-    private JComboBox divePlaceStatisticTypeField;
-    private JComboBox divePlaceStatisticOrientationField;
-    private JComboBox countryStatisticTypeField;
-    private JComboBox countryStatisticOrientationField;
-    private JComboBox diveTypeStatisticTypeField;
-    private JComboBox diveTypeStatisticOrientationField;
-    private JComboBox diveActivityStatisticTypeField;
-    private JComboBox diveActivityStatisticOrientationField;
-    private JComboBox watersStatisticTypeField;
-    private JComboBox watersStatisticOrientationField;
+    private JComboBox<String> buddyStatisticTypeField;
+    private JComboBox<String> buddyStatisticOrientationField;
+    private JComboBox<String> divePlaceStatisticTypeField;
+    private JComboBox<String> divePlaceStatisticOrientationField;
+    private JComboBox<String> countryStatisticTypeField;
+    private JComboBox<String> countryStatisticOrientationField;
+    private JComboBox<String> diveTypeStatisticTypeField;
+    private JComboBox<String> diveTypeStatisticOrientationField;
+    private JComboBox<String> diveActivityStatisticTypeField;
+    private JComboBox<String> diveActivityStatisticOrientationField;
+    private JComboBox<String> watersStatisticTypeField;
+    private JComboBox<String> watersStatisticOrientationField;
 
     public StatisticSettingsPanel(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
@@ -142,86 +142,86 @@ public class StatisticSettingsPanel extends AbstractSettingsPanel {
         setBorder(border);    
     }
     
-    private JComboBox getBuddyStatisticTypeField() {
+    private JComboBox<String> getBuddyStatisticTypeField() {
         if (buddyStatisticTypeField == null) {
-            buddyStatisticTypeField = new JComboBox(STATISTIC_TYPES);
+            buddyStatisticTypeField = new JComboBox<String>(STATISTIC_TYPES);
         }
         return buddyStatisticTypeField;
     }
     
-    private JComboBox getBuddyStatisticOrientationField() {
+    private JComboBox<String> getBuddyStatisticOrientationField() {
         if (buddyStatisticOrientationField == null) {
-            buddyStatisticOrientationField = new JComboBox(STATISTIC_ORIENTATIONS);
+            buddyStatisticOrientationField = new JComboBox<String>(STATISTIC_ORIENTATIONS);
         }
         return buddyStatisticOrientationField;
     }
 
-    private JComboBox getDivePlaceStatisticTypeField() {
+    private JComboBox<String> getDivePlaceStatisticTypeField() {
         if (divePlaceStatisticTypeField == null) {
-            divePlaceStatisticTypeField = new JComboBox(STATISTIC_TYPES);
+            divePlaceStatisticTypeField = new JComboBox<String>(STATISTIC_TYPES);
         }
         return divePlaceStatisticTypeField;
     }
     
-    private JComboBox getDivePlaceStatisticOrientationField() {
+    private JComboBox<String> getDivePlaceStatisticOrientationField() {
         if (divePlaceStatisticOrientationField == null) {
-            divePlaceStatisticOrientationField = new JComboBox(STATISTIC_ORIENTATIONS);
+            divePlaceStatisticOrientationField = new JComboBox<String>(STATISTIC_ORIENTATIONS);
         }
         return divePlaceStatisticOrientationField;
     }
 
-    private JComboBox getCountryStatisticTypeField() {
+    private JComboBox<String> getCountryStatisticTypeField() {
         if (countryStatisticTypeField == null) {
-            countryStatisticTypeField = new JComboBox(STATISTIC_TYPES);
+            countryStatisticTypeField = new JComboBox<String>(STATISTIC_TYPES);
         }
         return countryStatisticTypeField;
     }
     
-    private JComboBox getCountryStatisticOrientationField() {
+    private JComboBox<String> getCountryStatisticOrientationField() {
         if (countryStatisticOrientationField == null) {
-            countryStatisticOrientationField = new JComboBox(STATISTIC_ORIENTATIONS);
+            countryStatisticOrientationField = new JComboBox<String>(STATISTIC_ORIENTATIONS);
         }
         return countryStatisticOrientationField;
     }
 
-    private JComboBox getDiveTypeStatisticTypeField() {
+    private JComboBox<String> getDiveTypeStatisticTypeField() {
         if (diveTypeStatisticTypeField == null) {
-            diveTypeStatisticTypeField = new JComboBox(STATISTIC_TYPES);
+            diveTypeStatisticTypeField = new JComboBox<String>(STATISTIC_TYPES);
         }
         return diveTypeStatisticTypeField;
     }
     
-    private JComboBox getDiveTypeStatisticOrientationField() {
+    private JComboBox<String> getDiveTypeStatisticOrientationField() {
         if (diveTypeStatisticOrientationField == null) {
-            diveTypeStatisticOrientationField = new JComboBox(STATISTIC_ORIENTATIONS);
+            diveTypeStatisticOrientationField = new JComboBox<String>(STATISTIC_ORIENTATIONS);
         }
         return diveTypeStatisticOrientationField;
     }
 
-    private JComboBox getDiveActivityStatisticTypeField() {
+    private JComboBox<String> getDiveActivityStatisticTypeField() {
         if (diveActivityStatisticTypeField == null) {
-            diveActivityStatisticTypeField = new JComboBox(STATISTIC_TYPES);
+            diveActivityStatisticTypeField = new JComboBox<String>(STATISTIC_TYPES);
         }
         return diveActivityStatisticTypeField;
     }
     
-    private JComboBox getDiveActivityStatisticOrientationField() {
+    private JComboBox<String> getDiveActivityStatisticOrientationField() {
         if (diveActivityStatisticOrientationField == null) {
-            diveActivityStatisticOrientationField = new JComboBox(STATISTIC_ORIENTATIONS);
+            diveActivityStatisticOrientationField = new JComboBox<String>(STATISTIC_ORIENTATIONS);
         }
         return diveActivityStatisticOrientationField;
     }
 
-    private JComboBox getWatersStatisticTypeField() {
+    private JComboBox<String> getWatersStatisticTypeField() {
         if (watersStatisticTypeField == null) {
-            watersStatisticTypeField = new JComboBox(STATISTIC_TYPES);
+            watersStatisticTypeField = new JComboBox<String>(STATISTIC_TYPES);
         }
         return watersStatisticTypeField;
     }
     
-    private JComboBox getWatersStatisticOrientationField() {
+    private JComboBox<String> getWatersStatisticOrientationField() {
         if (watersStatisticOrientationField == null) {
-            watersStatisticOrientationField = new JComboBox(STATISTIC_ORIENTATIONS);
+            watersStatisticOrientationField = new JComboBox<String>(STATISTIC_ORIENTATIONS);
         }
         return watersStatisticOrientationField;
     }

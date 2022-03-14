@@ -35,7 +35,7 @@ public class ComboBoxEditor extends DefaultCellEditor implements TableCellEditor
     private final JPanel editorPanel;
 
     public ComboBoxEditor(String[] items) {
-        super(new JComboBox(items));
+        super(new JComboBox<Object>(items));
         editorPanel = new JPanel();
         editorPanel.add(editorComponent);
         this.clickCountToStart = 1;

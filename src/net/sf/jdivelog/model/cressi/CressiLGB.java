@@ -250,7 +250,7 @@ public class CressiLGB {
                 fle.readUnsignedByte();
 
                 /* set dive duration */
-                dive.setDuration(new Double(fle.readUnsignedShort()));
+                dive.setDuration(Double.valueOf(fle.readUnsignedShort()));
 
                 /* skip 2 unknown bytes */
                 fle.readUnsignedByte();
@@ -565,7 +565,8 @@ public class CressiLGB {
      * @return <code>true</code> if the character is an ASCII one and
      *         <code>false</code> otherwise
      */
-    private boolean IsAscii(int chr)
+    @SuppressWarnings("unused")
+	private boolean IsAscii(int chr)
     {
         if (chr >= '!' && chr <= '~')
         {

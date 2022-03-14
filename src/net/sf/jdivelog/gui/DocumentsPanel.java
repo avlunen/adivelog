@@ -31,7 +31,8 @@ public class DocumentsPanel extends JPanel {
     
     private static final long serialVersionUID = 1L;
 
-    private MainWindow mainWindow;
+    @SuppressWarnings("unused")
+	private MainWindow mainWindow;
     private JPanel documentsTreePanel;
     private JPanel documentsTablePanel;
     private JTree documentsTree;
@@ -69,7 +70,8 @@ public class DocumentsPanel extends JPanel {
         return documentsTree;
     }
 
-    private JPanel getdocumentsTablePanel() {
+    @SuppressWarnings("unused")
+	private JPanel getdocumentsTablePanel() {
         if (documentsTablePanel == null) {
         	documentsTablePanel = new JPanel();
         }

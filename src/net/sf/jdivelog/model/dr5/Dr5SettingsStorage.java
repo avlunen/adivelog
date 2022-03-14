@@ -84,17 +84,20 @@ public class Dr5SettingsStorage {
                 offset += numRead;
             }
 
+            // close input stream
+            is.close();
+            
             // Ensure all the bytes have been read in
             if (offset < bytes.length) {
                 throw new IOException("Could not completely read file " + file.getName());
             }
 
-            // Close the input stream and return bytes
-            is.close();
             return bytes;
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             throw new RuntimeException("Could not load config file", e);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException("Could not load config file", e);
         }
     }

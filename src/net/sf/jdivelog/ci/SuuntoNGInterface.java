@@ -98,9 +98,9 @@ public class SuuntoNGInterface implements ComputerInterface {
 
         private JCheckBox downloadAllCheckbox = null;
 
-        private JComboBox modelList = null;
+        private JComboBox<SuuntoComputerType> modelList = null;
 
-        private JComboBox portList = null;
+        private JComboBox<String> portList = null;
 
         private List<SuuntoComputerType> computerModelList = new LinkedList<SuuntoComputerType>();
 
@@ -143,7 +143,7 @@ public class SuuntoNGInterface implements ComputerInterface {
          * 
          * @return model list
          */
-        private JComboBox getComputerModelList() {
+        private JComboBox<SuuntoComputerType> getComputerModelList() {
             if (modelList == null) {
                 Map<String, SuuntoComputerType> sortedList = new TreeMap<String, SuuntoComputerType>();
 
@@ -153,7 +153,7 @@ public class SuuntoNGInterface implements ComputerInterface {
                     }
                 }
                 computerModelList.addAll(sortedList.values());
-                modelList = new JComboBox(sortedList.values().toArray());
+                modelList = new JComboBox<SuuntoComputerType>((SuuntoComputerType[]) sortedList.values().toArray());
             }
             return modelList;
         }
@@ -184,7 +184,7 @@ public class SuuntoNGInterface implements ComputerInterface {
          * 
          * @return comm port list
          */
-        private JComboBox getPortList() {
+        private JComboBox<String> getPortList() {
             if (portList == null) {
                 Vector<String> availablePorts = new Vector<String>();
                 Iterator<CommPortIdentifier> it = CommUtil.getInstance().getPortIdentifiers();
@@ -192,7 +192,7 @@ public class SuuntoNGInterface implements ComputerInterface {
                 while (it.hasNext()) {
                     availablePorts.add(it.next().getName());
                 }
-                portList = new JComboBox(availablePorts);
+                portList = new JComboBox<String>(availablePorts);
             }
             return portList;
         }

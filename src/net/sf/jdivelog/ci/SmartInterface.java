@@ -77,7 +77,7 @@ public class SmartInterface implements ComputerInterface {
     private OutputStream os = null;
     private TreeSet<JDive> jdives = null;
     private JPanel configurationPanel = null;
-    private JComboBox modelList = null;
+    private JComboBox<SmartComputerType> modelList = null;
 
     /**
      * Connect to the dive computer.
@@ -119,14 +119,14 @@ public class SmartInterface implements ComputerInterface {
      * 
      * @return model list
      */
-    private JComboBox getComputerModelList() {
+    private JComboBox<SmartComputerType> getComputerModelList() {
         if (modelList == null) {
             List<SmartComputerType> names = new LinkedList<SmartComputerType>();
 
             for (SmartComputerType type : SmartComputerType.values()) {
                 names.add(type);
             }
-            modelList = new JComboBox(names.toArray());
+            modelList = new JComboBox<SmartComputerType>((SmartComputerType[]) names.toArray());
         }
         return modelList;
     }

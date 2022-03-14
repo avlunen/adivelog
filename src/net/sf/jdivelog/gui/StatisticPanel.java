@@ -53,6 +53,7 @@ import net.sf.jdivelog.gui.statusbar.StatusInterface;
 import net.sf.jdivelog.model.DiveSite;
 import net.sf.jdivelog.model.JDive;
 import net.sf.jdivelog.model.JDiveLog;
+import net.sf.jdivelog.util.ChartDrawingSupplier;
 import net.sf.jdivelog.util.UnitConverter;
 
 import org.jfree.chart.ChartFactory;
@@ -61,7 +62,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.PieDataset;
 
@@ -121,17 +121,6 @@ public class StatisticPanel extends JPanel implements ActionListener {
 
     private JButton frequencyYearTimeStatisticButton = null;
 
- // Colours
-    private final String c1 = "0xCB272F";
-    private final String c2 = "0x2175B6";
-    private final String c3 = "0xA4C23B";
-    private final String c4 = "0xE18918";
-    private final String c5 = "0x026264";
-    private final String c6 = "0x128E02";
-    private final String c7 = "0x000B7A";
-    private final String c8 = "0xE7D400";
-    private final String c9 = "0xA357D9";
-    private final String c10 = "0xD85ED1";
     private final String cb = "0xF4F4E9"; // background
     
     /**
@@ -239,22 +228,11 @@ public class StatisticPanel extends JPanel implements ActionListener {
 	            plot.setOutlinePaint(Color.LIGHT_GRAY);
 	            plot.setBackgroundPaint(java.awt.Color.decode(cb));
 	            chart.setBackgroundPaint(Color.white);
+	            plot.setDrawingSupplier(new ChartDrawingSupplier());
 	            //plot.setLabelGenerator(null); // turns labels off
 	            plot.setIgnoreZeroValues(true);
 	            plot.setIgnoreNullValues(true);
                 
-			   // set foreground colors
-	            plot.setSectionPaint(0, java.awt.Color.decode(c1));
-	            plot.setSectionPaint(1, java.awt.Color.decode(c2));
-	            plot.setSectionPaint(2, java.awt.Color.decode(c3));
-	            plot.setSectionPaint(3, java.awt.Color.decode(c4));
-	            plot.setSectionPaint(4, java.awt.Color.decode(c5));
-	            plot.setSectionPaint(5, java.awt.Color.decode(c6));
-	            plot.setSectionPaint(6, java.awt.Color.decode(c7));
-	            plot.setSectionPaint(7, java.awt.Color.decode(c8));
-	            plot.setSectionPaint(8, java.awt.Color.decode(c9));
-	            plot.setSectionPaint(9, java.awt.Color.decode(c10));
-
                 return chart;
             }
             else if (TYPE_PIE3D.equals(type)) {
@@ -274,25 +252,14 @@ public class StatisticPanel extends JPanel implements ActionListener {
 	                    true, false);
 	            // Post processing
 	            CategoryPlot plot = (CategoryPlot)chart.getPlot();
-	            BarRenderer vbr = (BarRenderer) plot.getRenderer();
 	            
 	            plot.setOutlinePaint(Color.lightGray); // outline color
 	            plot.setBackgroundPaint(java.awt.Color.decode(cb));
 	            plot.setRangeGridlinePaint(Color.DARK_GRAY);
-	            plot.setDomainGridlinePaint(Color.DARK_GRAY);      
+	            plot.setDomainGridlinePaint(Color.DARK_GRAY);
 	            chart.setBackgroundPaint(Color.white); // background color
+	            plot.setDrawingSupplier(new ChartDrawingSupplier());
 
-	            vbr.setSeriesPaint(0, java.awt.Color.decode(c1)); // bar color
-	            vbr.setSeriesPaint(1, java.awt.Color.decode(c2)); // bar color2
-	            vbr.setSeriesPaint(2, java.awt.Color.decode(c3)); // bar color3
-	            vbr.setSeriesPaint(3, java.awt.Color.decode(c4)); // bar color4
-	            vbr.setSeriesPaint(4, java.awt.Color.decode(c5)); // bar color5
-	            vbr.setSeriesPaint(5, java.awt.Color.decode(c6)); // bar color6
-	            vbr.setSeriesPaint(6, java.awt.Color.decode(c7)); // bar color7
-	            vbr.setSeriesPaint(7, java.awt.Color.decode(c8)); // bar color8
-	            vbr.setSeriesPaint(8, java.awt.Color.decode(c9)); // bar color9
-	            vbr.setSeriesPaint(9, java.awt.Color.decode(c10)); // bar color10
-	            
 	            return chart;
             }
         } finally {
@@ -310,27 +277,17 @@ public class StatisticPanel extends JPanel implements ActionListener {
                     true, false);
             // Post processing
             CategoryPlot plot = (CategoryPlot)chart.getPlot();
-            BarRenderer vbr = (BarRenderer) plot.getRenderer();
             
             plot.setOutlinePaint(Color.lightGray); // outline color
             plot.setBackgroundPaint(java.awt.Color.decode(cb));
             plot.setRangeGridlinePaint(Color.DARK_GRAY);
             plot.setDomainGridlinePaint(Color.DARK_GRAY);      
             chart.setBackgroundPaint(Color.white); // background color
+            plot.setDrawingSupplier(new ChartDrawingSupplier());
 
-            vbr.setSeriesPaint(0, java.awt.Color.decode(c1)); // bar color
-            vbr.setSeriesPaint(1, java.awt.Color.decode(c2)); // bar color2
-            vbr.setSeriesPaint(2, java.awt.Color.decode(c3)); // bar color3
-            vbr.setSeriesPaint(3, java.awt.Color.decode(c4)); // bar color4
-            vbr.setSeriesPaint(4, java.awt.Color.decode(c5)); // bar color5
-            vbr.setSeriesPaint(5, java.awt.Color.decode(c6)); // bar color6
-            vbr.setSeriesPaint(6, java.awt.Color.decode(c7)); // bar color7
-            vbr.setSeriesPaint(7, java.awt.Color.decode(c8)); // bar color8
-            vbr.setSeriesPaint(8, java.awt.Color.decode(c9)); // bar color9
-            vbr.setSeriesPaint(9, java.awt.Color.decode(c10)); // bar color10
-            
             return chart;
-        } finally {
+        }
+        finally {
             status.infiniteProgressbarEnd();
             status.messageClear();
         }

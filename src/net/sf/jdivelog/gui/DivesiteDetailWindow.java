@@ -111,7 +111,7 @@ public class DivesiteDetailWindow extends JDialog implements ActionListener {
 
     private JSpinner spinEvaluation;
     
-    private JComboBox fieldSiteType;
+    private JComboBox<?> fieldSiteType;
 
     private AutoCompleteDictionary watersDictionary;
 
@@ -121,7 +121,7 @@ public class DivesiteDetailWindow extends JDialog implements ActionListener {
 
     private AutoCompleteDictionary stateDictionary;
 
-    private JComboBox fieldTimezone;
+    private JComboBox<?> fieldTimezone;
 
     /**
      * Constructor
@@ -473,9 +473,9 @@ public class DivesiteDetailWindow extends JDialog implements ActionListener {
         return spinEvaluation;
     }
     
-    private JComboBox getFieldSiteType() {
+    private JComboBox<?> getFieldSiteType() {
         if (fieldSiteType == null) {
-            fieldSiteType = new JComboBox(SITE_TYPES);
+            fieldSiteType = new JComboBox<Object>(SITE_TYPES);
         }
         return fieldSiteType;
     }
@@ -659,7 +659,7 @@ public class DivesiteDetailWindow extends JDialog implements ActionListener {
         return watersDictionary;
     }
     
-    private JComboBox getFieldTimezone() {
+    private JComboBox<?> getFieldTimezone() {
         if (fieldTimezone == null) {
             String[] ids = TimeZone.getAvailableIDs();
             TreeSet<String> idSet = new TreeSet<String>();
@@ -667,7 +667,7 @@ public class DivesiteDetailWindow extends JDialog implements ActionListener {
             for (int i=0; i<ids.length;i++) {
                 idSet.add(ids[i]);
             }
-            fieldTimezone = new JComboBox(idSet.toArray());
+            fieldTimezone = new JComboBox<Object>(idSet.toArray());
             fieldTimezone.setPreferredSize(new Dimension(200,20));
         }
         return fieldTimezone;

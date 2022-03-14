@@ -36,9 +36,12 @@ public class CommandAssemblyDives implements Command {
     
     private MainWindow mainWindow = null;
     private TreeSet<JDive> divesToAssembly = null;
-    private TreeSet<JDive> oldDiveList = null;
-    private boolean oldChanged = false;
-    private TreeSet<JDive> newDiveList = null;
+	@SuppressWarnings("unused")
+	private TreeSet<JDive> oldDiveList = null;
+    @SuppressWarnings("unused")
+	private boolean oldChanged = false;
+    @SuppressWarnings("unused")
+	private TreeSet<JDive> newDiveList = null;
     
     public CommandAssemblyDives(MainWindow mainWindow, TreeSet<JDive> divesToAssembly) {
         this.mainWindow = mainWindow;

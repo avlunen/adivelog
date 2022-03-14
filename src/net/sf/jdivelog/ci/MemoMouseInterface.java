@@ -101,7 +101,7 @@ public class MemoMouseInterface implements ComputerInterface {
 
         private JCheckBox downloadAllCheckbox = null;
 
-        private JComboBox portList = null;
+        private JComboBox<String> portList = null;
 
         private JFormattedTextField timeAdjustmentField = null;
 
@@ -156,7 +156,7 @@ public class MemoMouseInterface implements ComputerInterface {
          * 
          * @return comm port list
          */
-        private JComboBox getPortList() {
+        private JComboBox<String> getPortList() {
             if (portList == null) {
                 Vector<String> availablePorts = new Vector<String>();
                 Iterator<CommPortIdentifier> it = CommUtil.getInstance().getPortIdentifiers();
@@ -164,7 +164,7 @@ public class MemoMouseInterface implements ComputerInterface {
                 while (it.hasNext()) {
                     availablePorts.add(it.next().getName());
                 }
-                portList = new JComboBox(availablePorts);
+                portList = new JComboBox<String>(availablePorts);
             }
             return portList;
         }

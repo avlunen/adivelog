@@ -101,14 +101,14 @@ public class DiveSimulationCanvas extends Canvas implements DiveProfileDisplay {
     public void paint(Graphics g) {
         Dimension d = getPreferredSize();
         if (d.getWidth() > 0 && d.getHeight() > 0) {
-            BufferedImage img = new BufferedImage(new Double(d.getWidth()).intValue(), new Double(d.getHeight()).intValue(), BufferedImage.TYPE_INT_ARGB);
+            BufferedImage img = new BufferedImage(Double.valueOf(d.getWidth()).intValue(), Double.valueOf(d.getHeight()).intValue(), BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = img.createGraphics();
             g2d.setBackground(Color.WHITE);
-            g2d.clearRect(0, 0, new Double(d.getWidth()).intValue(), new Double(d.getHeight()).intValue());
+            g2d.clearRect(0, 0, Double.valueOf(d.getWidth()).intValue(), Double.valueOf(d.getHeight()).intValue());
             drawProfile(g2d, d);
             drawGrid(g2d, d);
             drawDiver(g2d, d);
-            g.drawImage(img, 0, 0, new Double(d.getWidth()).intValue(), new Double(d.getHeight()).intValue(), Color.WHITE, this);
+            g.drawImage(img, 0, 0, Double.valueOf(d.getWidth()).intValue(), Double.valueOf(d.getHeight()).intValue(), Color.WHITE, this);
         }
     }
     
@@ -260,10 +260,12 @@ public class DiveSimulationCanvas extends Canvas implements DiveProfileDisplay {
             this.x = x;
             this.y = y;
         }
-        public long getX() {
+        @SuppressWarnings("unused")
+		public long getX() {
             return x;
         }
-        public long getY() {
+        @SuppressWarnings("unused")
+		public long getY() {
             return y;
         }
     }
@@ -279,7 +281,8 @@ public class DiveSimulationCanvas extends Canvas implements DiveProfileDisplay {
                 }
                 try {
                     sleep(500);
-                } catch (InterruptedException e) {
+                }
+                catch (InterruptedException e) {
                 }
             }
         }

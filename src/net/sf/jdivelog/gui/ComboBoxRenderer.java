@@ -31,10 +31,10 @@ import javax.swing.table.TableCellRenderer;
 public class ComboBoxRenderer extends JPanel implements TableCellRenderer {
     
     private static final long serialVersionUID = 3261644939602787800L;
-    private final JComboBox combobox;
+    private final JComboBox<?> combobox;
 
     public ComboBoxRenderer(String[] labels) {
-        combobox = new JComboBox(labels);
+        combobox = new JComboBox<Object>(labels);
         add(combobox);
     }
 

@@ -94,7 +94,7 @@ public class EquipmentWindow extends JDialog implements ActionListener, LogbookC
     private JTextField gloves;
     private AutoCompleteDictionary glovesDictionary;
     private JTextField tankVolume;
-    private JComboBox tankType;
+    private JComboBox<?> tankType;
     private JTextField weight;
 
     private boolean integrated;
@@ -633,9 +633,9 @@ public class EquipmentWindow extends JDialog implements ActionListener, LogbookC
         return tankVolume;
     }
     
-    private JComboBox getTankType() {
+    private JComboBox<?> getTankType() {
         if (tankType == null) {
-            tankType = new JComboBox(TankDetailWindow.TANKTYPES);
+            tankType = new JComboBox<Object>(TankDetailWindow.TANKTYPES);
         }
         return tankType;
     }

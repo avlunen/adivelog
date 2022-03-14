@@ -131,17 +131,17 @@ public class SuuntoConfigurationPanel extends JPanel {
 
     private JButton setPersonalInformationButton;
 
-    private JComboBox intervalCombobox;
+    private JComboBox<?> intervalCombobox;
 
     private JButton setIntervalButton;
 
-    private JComboBox altitudeCombobox;
+    private JComboBox<?> altitudeCombobox;
 
-    private JComboBox additionalSafetyCombobox;
+    private JComboBox<?> additionalSafetyCombobox;
 
     private JButton setAltitudeAndSafetyButton;
 
-    private JComboBox modelCombobox;
+    private JComboBox<?> modelCombobox;
 
     private JButton setModelButton;
 
@@ -472,9 +472,9 @@ public class SuuntoConfigurationPanel extends JPanel {
         return setPersonalInformationButton;
     }
 
-    private JComboBox getIntervalCombobox() {
+    private JComboBox<?> getIntervalCombobox() {
         if (intervalCombobox == null) {
-            intervalCombobox = new JComboBox(INTERVALS);
+            intervalCombobox = new JComboBox<Object>(INTERVALS);
         }
         return intervalCombobox;
     }
@@ -495,16 +495,16 @@ public class SuuntoConfigurationPanel extends JPanel {
         return setIntervalButton;
     }
 
-    private JComboBox getAltitudeCombobox() {
+    private JComboBox<?> getAltitudeCombobox() {
         if (altitudeCombobox == null) {
-            altitudeCombobox = new JComboBox(ALTITUDE_RANGES);
+            altitudeCombobox = new JComboBox<Object>(ALTITUDE_RANGES);
         }
         return altitudeCombobox;
     }
 
-    private JComboBox getAdditionalSafetyCombobox() {
+    private JComboBox<?> getAdditionalSafetyCombobox() {
         if (additionalSafetyCombobox == null) {
-            additionalSafetyCombobox = new JComboBox(SAFETY_LEVELS);
+            additionalSafetyCombobox = new JComboBox<Object>(SAFETY_LEVELS);
         }
         return additionalSafetyCombobox;
     }
@@ -525,9 +525,9 @@ public class SuuntoConfigurationPanel extends JPanel {
         return setAltitudeAndSafetyButton;
     }
 
-    private JComboBox getModelCombobox() {
+    private JComboBox<?> getModelCombobox() {
         if (modelCombobox == null) {
-            modelCombobox = new JComboBox(MODELS);
+            modelCombobox = new JComboBox<Object>(MODELS);
         }
         return modelCombobox;
     }

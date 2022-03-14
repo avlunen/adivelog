@@ -696,9 +696,9 @@ public class SuuntoInterface implements ComputerInterface {
 
         private Vector<String> availablePorts;
 
-        private JComboBox modelList;
+        private JComboBox<SuuntoComputerType> modelList;
 
-        private JComboBox portList;
+        private JComboBox<String> portList;
 
         private JCheckBox downloadAllCheckbox;
 
@@ -776,7 +776,7 @@ public class SuuntoInterface implements ComputerInterface {
          * 
          * @return model list
          */
-        private JComboBox getComputerModelList() {
+        private JComboBox<SuuntoComputerType> getComputerModelList() {
             if (modelList == null) {
                 Map<String, SuuntoComputerType> sortedList = new TreeMap<String, SuuntoComputerType>();
 
@@ -786,14 +786,14 @@ public class SuuntoInterface implements ComputerInterface {
                     }
                 }
                 computerModelList.addAll(sortedList.values());
-                modelList = new JComboBox(sortedList.values().toArray());
+                modelList = new JComboBox<SuuntoComputerType>((SuuntoComputerType[]) sortedList.values().toArray());
             }
             return modelList;
         }
 
-        private JComboBox getPortList() {
+        private JComboBox<String> getPortList() {
             if (portList == null) {
-                portList = new JComboBox(availablePorts);
+                portList = new JComboBox<String>(availablePorts);
             }
             return portList;
         }

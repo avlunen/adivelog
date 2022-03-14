@@ -47,7 +47,6 @@ public class OSTCImporter {
     }
 
     private static byte[] readBytes(File file) throws IOException {
-        @SuppressWarnings("unchecked")
         List<String> lines = FileUtils.readLines(file, "UTF-8");
         ByteBuffer bb = ByteBuffer.allocate(100*1024);
         for (String line : lines) {

@@ -68,7 +68,7 @@ public class TankDetailWindow extends JDialog implements ActionListener {
 	private JLabel labelVolume = null;
 	private JTextField fieldVolume = null;
 	private JLabel labelType = null;
-	private JComboBox fieldType = null;
+	private JComboBox<?> fieldType = null;
 	private JLabel labelPstart = null;
 	private JTextField fieldPstart = null;
 	private JLabel labelPend = null;
@@ -259,9 +259,9 @@ public class TankDetailWindow extends JDialog implements ActionListener {
 	    return fieldMix;
 	}
 	
-	private JComboBox getFieldType() {
+	private JComboBox<?> getFieldType() {
 	    if (fieldType == null) {
-	        fieldType = new JComboBox(TANKTYPES);
+	        fieldType = new JComboBox<Object>(TANKTYPES);
 	    }
 	    return fieldType;
 	}

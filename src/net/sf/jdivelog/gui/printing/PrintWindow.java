@@ -68,17 +68,17 @@ public class PrintWindow extends JDialog implements ActionListener {
     private ReportManager reportManager;
     private JPanel jContentPanel;
     private JPanel reportBox;
-    private JComboBox reportField;
+    private JComboBox<String> reportField;
     private JPanel outputBox;
     private JPanel buttonPanel;
     private JButton runButton;
     private JRadioButton printerRadioButton;
     private ButtonGroup outputRadioButtonGroup;
     private JRadioButton fileRadioButton;
-    private JComboBox printerCombobox;
+    private JComboBox<String> printerCombobox;
     private JTextField fileField;
     private JButton chooseFileButton;
-    private JComboBox mimetypeCombobox;
+    private JComboBox<String> mimetypeCombobox;
     private ButtonGroup scopeRadioButtonGroup;
     private JRadioButton allDivesRadioButton;
     private JRadioButton selectedDivesRadioButton;
@@ -165,9 +165,9 @@ public class PrintWindow extends JDialog implements ActionListener {
         return reportBox;
     }
     
-    private JComboBox getReportField() {
+    private JComboBox<String> getReportField() {
         if (reportField == null) {
-            reportField = new JComboBox(reportManager.getReportNames());
+            reportField = new JComboBox<String>(reportManager.getReportNames());
         }
         return reportField;
     }
@@ -251,9 +251,9 @@ public class PrintWindow extends JDialog implements ActionListener {
         return fileRadioButton;
     }
     
-    private JComboBox getPrinterCombobox() {
+    private JComboBox<String> getPrinterCombobox() {
         if (printerCombobox == null) {
-            printerCombobox = new JComboBox(PrinterOutputDevice.getAvailablePrinters());
+            printerCombobox = new JComboBox<String>(PrinterOutputDevice.getAvailablePrinters());
         }
         return printerCombobox;
     }
@@ -290,9 +290,9 @@ public class PrintWindow extends JDialog implements ActionListener {
         return chooseFileButton;
     }
     
-    private JComboBox getMimetypeCombobox() {
+    private JComboBox<String> getMimetypeCombobox() {
         if (mimetypeCombobox == null) {
-            mimetypeCombobox = new JComboBox(getLocalized(FileOutputDevice.getMimeTypes()));
+            mimetypeCombobox = new JComboBox<String>(getLocalized(FileOutputDevice.getMimeTypes()));
         }
         return mimetypeCombobox;
     }

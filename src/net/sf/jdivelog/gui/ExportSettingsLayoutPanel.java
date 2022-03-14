@@ -54,7 +54,7 @@ public class ExportSettingsLayoutPanel extends AbstractSettingsPanel implements 
 
     private ExportSettings settings;
 
-    private JComboBox skinField;
+    private JComboBox<String> skinField;
 
     private JButton chooseSkinFileButton;
 
@@ -113,7 +113,7 @@ public class ExportSettingsLayoutPanel extends AbstractSettingsPanel implements 
         setBorder(border);
     }
 
-    private JComboBox getSkinField() {
+    private JComboBox<String> getSkinField() {
         if (skinField == null) {
             ArrayList<String> skins = new ArrayList<String>();
             String skindir = System.getProperty("skindir");
@@ -135,7 +135,7 @@ public class ExportSettingsLayoutPanel extends AbstractSettingsPanel implements 
                     }
                 }
             }
-            skinField = new JComboBox(skins.toArray());
+            skinField = new JComboBox<String>((String[]) skins.toArray());
         }
         return skinField;
     }
@@ -201,14 +201,19 @@ public class ExportSettingsLayoutPanel extends AbstractSettingsPanel implements 
                 if (f.isDirectory()) {
                     return true;
                 }
+                ZipFile zf = null;
                 try {
-                    ZipFile zf = new ZipFile(f);
+                    zf = new ZipFile(f);
                     ZipEntry ze = zf.getEntry("jdivelog.css");
                     if (ze != null) {
+                    	zf.close();
                         return true;
                     }
-                } catch (ZipException e) {
-                } catch (IOException e) {
+                    zf.close();
+                }
+                catch (ZipException e) {
+                }
+                catch (IOException e) {
                 }
                 return false;
             }

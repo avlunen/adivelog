@@ -38,7 +38,6 @@ import net.sf.jdivelog.model.Mix;
 
 public class MixCellEditor implements TableCellEditor, TableCellRenderer {
     
-    private static final long serialVersionUID = 1L;
     private final Window parent;
     private final MixDatabase db;
     private final MixField field;

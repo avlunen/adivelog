@@ -99,11 +99,14 @@ public class OSTCInterface implements ComputerInterface {
                         HASHKEYS.put(hashkeys[j], driver.getName());
                     }
                 }
-            } catch (ClassNotFoundException e) {
+            }
+            catch (ClassNotFoundException e) {
                 LOGGER.log(Level.SEVERE, "could not instantiate driver '" + DRIVER_CLASS_NAMES[i] + "'", e);
-            } catch (InstantiationException e) {
+            }
+            catch (InstantiationException e) {
                 LOGGER.log(Level.SEVERE, "could not instantiate driver '" + DRIVER_CLASS_NAMES[i] + "'", e);
-            } catch (IllegalAccessException e) {
+            }
+            catch (IllegalAccessException e) {
                 LOGGER.log(Level.SEVERE, "could not instantiate driver '" + DRIVER_CLASS_NAMES[i] + "'", e);
             }
         }
@@ -567,9 +570,9 @@ public class OSTCInterface implements ComputerInterface {
 
         private Vector<String> availablePorts;
 
-        private JComboBox protocolList;
+        private JComboBox<String> protocolList;
 
-        private JComboBox portList;
+        private JComboBox<String> portList;
 
         public OSTCConfigurationPanel() {
             availablePorts = new Vector<String>();
@@ -624,21 +627,21 @@ public class OSTCInterface implements ComputerInterface {
         // private methods
         //
 
-        private JComboBox getProtocolList() {
+        private JComboBox<String> getProtocolList() {
             if (protocolList == null) {
                 ArrayList<String> pn = new ArrayList<String>();
                 pn.add(Messages.getString("auto"));
                 pn.addAll(drivers.keySet());
                 String[] protocolNames = new String[pn.size()];
                 pn.toArray(protocolNames);
-                protocolList = new JComboBox(protocolNames);
+                protocolList = new JComboBox<String>(protocolNames);
             }
             return protocolList;
         }
 
-        private JComboBox getPortList() {
+        private JComboBox<String> getPortList() {
             if (portList == null) {
-                portList = new JComboBox(availablePorts);
+                portList = new JComboBox<String>(availablePorts);
             }
             return portList;
         }

@@ -67,13 +67,13 @@ public class SettingsGeneralPanel extends AbstractSettingsPanel implements Actio
     
     private static final long serialVersionUID = 1L;
 
-    private JComboBox localeField;
-    private JComboBox systemField;
-    private JComboBox dateFormatField;
-    private JComboBox dateTimeFormatField;
+    private JComboBox<String> localeField;
+    private JComboBox<String> systemField;
+    private JComboBox<String> dateFormatField;
+    private JComboBox<String> dateTimeFormatField;
     
     private JCheckBox systemLookCheckBox;
-    private JComboBox lookAndFeels;
+    private JComboBox<LafInfo> lookAndFeels;
     private JCheckBox previewCheckBox;
     private JCheckBox startSortCheckBox;
     private JTextField documents_pathField;
@@ -190,24 +190,24 @@ public class SettingsGeneralPanel extends AbstractSettingsPanel implements Actio
         setBorder(border);
     }
     
-    private JComboBox getLocaleField() {
+    private JComboBox<String> getLocaleField() {
         if (localeField == null) {
-            localeField = new JComboBox(LOCALE_NAMES);
+            localeField = new JComboBox<String>(LOCALE_NAMES);
         }
         return localeField;
     }
     
-    private JComboBox getSystemField() {
+    private JComboBox<String> getSystemField() {
         if (systemField == null) {
-            systemField = new JComboBox(SYSTEM_NAMES);
+            systemField = new JComboBox<String>(SYSTEM_NAMES);
             
         }
         return systemField;
     }
     
-    private JComboBox getDateFormatField() {
+    private JComboBox<String> getDateFormatField() {
         if (dateFormatField == null) {
-            dateFormatField = new JComboBox(DATEFORMATS);
+            dateFormatField = new JComboBox<String>(DATEFORMATS);
         }
         return dateFormatField;
     }
@@ -239,21 +239,21 @@ public class SettingsGeneralPanel extends AbstractSettingsPanel implements Actio
         return systemLookCheckBox;
     }       
         
-   private JComboBox getDateTimeFormatField() {
+   private JComboBox<String> getDateTimeFormatField() {
         if (dateTimeFormatField == null) {
-            dateTimeFormatField = new JComboBox(DATETIMEFORMATS);
+            dateTimeFormatField = new JComboBox<String>(DATETIMEFORMATS);
         }
         return dateTimeFormatField;
     }
    
-   private JComboBox getLookAndFeels() {
+   private JComboBox<LafInfo> getLookAndFeels() {
        if (lookAndFeels == null) {
            LookAndFeelInfo[] lafs = UIManager.getInstalledLookAndFeels();
            LafInfo[] lafInfos = new LafInfo[lafs.length];
            for (int i=0; i<lafs.length; i++) {
                lafInfos[i] = new LafInfo(lafs[i]);
            }
-           lookAndFeels = new JComboBox(lafInfos);           
+           lookAndFeels = new JComboBox<LafInfo>(lafInfos);           
        }
        return lookAndFeels;
    }
@@ -279,7 +279,8 @@ public class SettingsGeneralPanel extends AbstractSettingsPanel implements Actio
        return documents_pathField;
    }
 
-   private JButton getDocuments_pathButton() {
+   @SuppressWarnings("unused")
+private JButton getDocuments_pathButton() {
        if (documents_pathButton == null) {
            documents_pathButton = new JButton();
            documents_pathButton.addActionListener(this);

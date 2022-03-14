@@ -445,7 +445,8 @@ public class SDM2Dive implements Comparable<SDM2Dive> {
             return depth;
         }
 
-        public void setDepth(String depth) {
+        @SuppressWarnings("unused")
+		public void setDepth(String depth) {
             this.depth = depth;
         }
 
@@ -453,7 +454,8 @@ public class SDM2Dive implements Comparable<SDM2Dive> {
             return time;
         }
 
-        public void setTime(String time) {
+        @SuppressWarnings("unused")
+		public void setTime(String time) {
             this.time = time;
         }
     }

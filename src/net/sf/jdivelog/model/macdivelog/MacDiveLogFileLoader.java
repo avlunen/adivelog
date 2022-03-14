@@ -106,7 +106,8 @@ public class MacDiveLogFileLoader {
         }                
     }    
 
-    private void LoadDives(Document doc,
+    @SuppressWarnings("unused")
+	private void LoadDives(Document doc,
             String units,
             Equipment diveequipment) {
         try
@@ -223,10 +224,10 @@ public class MacDiveLogFileLoader {
                     }
                     else
                     {
-                         divegas.setOxygen(new Double(21));                                 
+                         divegas.setOxygen(Double.valueOf(21));                                 
                     }
-                    divegas.setNitrogen(new Double(0.79));
-                    divegas.setHelium(new Double(0));
+                    divegas.setNitrogen(Double.valueOf(0.79));
+                    divegas.setHelium(Double.valueOf(0));
                 }   
                 Double startPSI = 0.0;
                 if (startPSIStr.length() > 0)
@@ -305,7 +306,8 @@ public class MacDiveLogFileLoader {
                 
                 // DateTime
                 String dateTime = diveElement.getAttribute("DateTime");                
-                Date date = new Date(dateTime);
+                // Date date = new Date(dateTime);
+                Date date = df.parse(dateTime);
                 jDive.setDate(date);                                   
                 
                 // Set equipment
@@ -337,12 +339,14 @@ public class MacDiveLogFileLoader {
             }
             CommandAddDives cmd = new CommandAddDives(this.mainWindow, diveToAdd);
             CommandManager.getInstance().execute(cmd);
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
             LOGGER.log(Level.SEVERE, "Error importing MacDiveLog - LoadDives", ex);
         }
     }
     
-    private void LoadDiveProfile(Element diveElement, Dive divedata, Double duration, UnitConverter unitConverter) {
+    @SuppressWarnings("unused")
+	private void LoadDiveProfile(Element diveElement, Dive divedata, Double duration, UnitConverter unitConverter) {
     	long currentTime = System.currentTimeMillis();
                        
         NodeList diveProfiles = diveElement.getElementsByTagName("profile");
@@ -352,8 +356,7 @@ public class MacDiveLogFileLoader {
         divedata.setDeltaMode();                                       
         divedata.addDepth("0.00");
         Double depth = 0.0;
-        for (int i = 0; i < diveProfiles.getLength(); i++ )
-        {
+        for (int i = 0; i < diveProfiles.getLength(); i++ ) {
             Element profileElement = (Element)diveProfiles.item(i);
             String depthStr = profileElement.getAttribute("depth");            
             String surfaceStr = profileElement.getAttribute("surface"); 

@@ -297,19 +297,24 @@ public class AladinInterface implements ComputerInterface {
                 f.write (read_data [index]);
             }
             f.close ();
-        } catch (PortInUseException piuex) {
+        }
+        catch (PortInUseException piuex) {
             LOGGER.log(Level.SEVERE, "transfer failed, comprt in use", piuex);
             throw new TransferException(Messages.getString("aladin.comport_in_use"));
-        } catch (UnsupportedCommOperationException comuex) {
+        }
+        catch (UnsupportedCommOperationException comuex) {
             LOGGER.log(Level.SEVERE, "transfer failed, comprt operation unsupported", comuex);
             throw new TransferException(Messages.getString("aladin.ioexception"));
-        } catch (IOException ioe) {
+        }
+        catch (IOException ioe) {
             LOGGER.log(Level.SEVERE, "transfer failed, IOException", ioe);
             throw new TransferException(Messages.getString("aladin.ioexception"));
-        } catch (PortNotFoundException e) {
+        }
+        catch (PortNotFoundException e) {
             LOGGER.log(Level.SEVERE, "transfer failed, port not found", e);
             throw new InvalidConfigurationException(Messages.getString("aladin.comport_not_found"));
-        } finally {
+        }
+        finally {
             status.messageClear();
             if (commPort != null) {
                 commPort.close();
@@ -446,17 +451,17 @@ public class AladinInterface implements ComputerInterface {
 
         private Vector<String> availablePorts;
 
-        private JComboBox modelList;
+        private JComboBox<String> modelList;
 
-        private JComboBox portList;
+        private JComboBox<String> portList;
 
-        private JComboBox connectionspeed;
+        private JComboBox<Integer> connectionspeed;
 
-        private JComboBox databits;
+        private JComboBox<DataBits> databits;
 
-        private JComboBox stopbits;
+        private JComboBox<StopBits> stopbits;
 
-        private JComboBox parity;
+        private JComboBox<Parity> parity;
 
         /**
          * Constructor
@@ -610,44 +615,44 @@ public class AladinInterface implements ComputerInterface {
         // private methods
         //
 
-        private JComboBox getModelList() {
+        private JComboBox<String> getModelList() {
             if (modelList == null) {
-                modelList = new JComboBox(COMPUTERMODEL_NAMES);
+                modelList = new JComboBox<String>(COMPUTERMODEL_NAMES);
             }
             return modelList;
         }
 
-        private JComboBox getConnectionSpeedList() {
+        private JComboBox<Integer> getConnectionSpeedList() {
             if (connectionspeed == null) {
-                connectionspeed = new JComboBox(CONNECTION_SPEED);
+                connectionspeed = new JComboBox<Integer>(CONNECTION_SPEED);
             }
             return connectionspeed;
         }
 
-        private JComboBox getDataBitsList() {
+        private JComboBox<DataBits> getDataBitsList() {
             if (databits == null) {
-                databits = new JComboBox(CONNECTION_DATA_BITS);
+                databits = new JComboBox<DataBits>(CONNECTION_DATA_BITS);
             }
             return databits;
         }
 
-        private JComboBox getStopBitsList() {
+        private JComboBox<StopBits> getStopBitsList() {
             if (stopbits == null) {
-                stopbits = new JComboBox(CONNECTION_STOP_BITS);
+                stopbits = new JComboBox<StopBits>(CONNECTION_STOP_BITS);
             }
             return stopbits;
         }
 
-        private JComboBox getParityList() {
+        private JComboBox<Parity> getParityList() {
             if (parity == null) {
-                parity = new JComboBox(CONNECTION_PARITY);
+                parity = new JComboBox<Parity>(CONNECTION_PARITY);
             }
             return parity;
         }
 
-        private JComboBox getPortList() {
+        private JComboBox<String> getPortList() {
             if (portList == null) {
-                portList = new JComboBox(availablePorts);
+                portList = new JComboBox<String>(availablePorts);
             }
             return portList;
         }

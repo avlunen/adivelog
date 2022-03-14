@@ -282,6 +282,7 @@ public final class PredatorCommunicator {
 		return baos.toByteArray();
 	}
 
+	@SuppressWarnings("unchecked")
 	private ResponseDatagram sendMessage(int fromDeviceId, int toDeviceId,
 			MessageDatagram message,
 			Class<? extends ResponseDatagram>... acceptableResponses)

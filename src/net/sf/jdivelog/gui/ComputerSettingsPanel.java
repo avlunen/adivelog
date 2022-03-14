@@ -48,7 +48,7 @@ public class ComputerSettingsPanel extends AbstractSettingsPanel implements Acti
     
     private JPanel driverPanel = null;
     private JPanel driverSettingsPanel = null;
-    private JComboBox driverList = null;
+    private JComboBox<?> driverList = null;
     private String[] drivernames = null;
 
     private ComputerInterface driver;
@@ -148,9 +148,9 @@ public class ComputerSettingsPanel extends AbstractSettingsPanel implements Acti
         return intervalField;
     }
     
-    private JComboBox getDriverList() {
+    private JComboBox<?> getDriverList() {
         if (driverList == null) {
-            driverList = new JComboBox(drivernames);
+            driverList = new JComboBox<Object>(drivernames);
             driverList.addActionListener(this);
         }
         return driverList;
