@@ -337,7 +337,7 @@ public class MixEditWindow extends JDialog {
     
     private void heChanged() {
         if (!update) {
-            if (!getHeliumField().equals(lastHe)) {
+            if (!getHeliumField().getText().equals(lastHe)) {
                 updateNitrogen();
                 updateName();
                 updateMOD();

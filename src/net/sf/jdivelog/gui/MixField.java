@@ -184,7 +184,7 @@ public class MixField extends JPanel {
 
     private void tfChanged() {
         String nt = getTextField().getText();
-        if (nt != null && !nt.equals(textField)) {
+        if (nt != null && !nt.equals(textField.getText())) {
             parseText();
             lastName = nt;
         }
