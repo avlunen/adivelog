@@ -24,6 +24,7 @@ Apache (Commons and XML Graphics Project):
 8) commons-logging-api-1.1.1.jar
 9) batik-all-1.7.jar
 10) fop.jar 1.1
+11) avalon-framework-api|impl-4.1.5.jar
 
 Pixelitor (https://pixelitor.sourceforge.io/):
 1) pixelitor_4.0.2.jar
