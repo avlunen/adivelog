@@ -10,7 +10,7 @@ import net.sf.jdivelog.model.uddf.file.UddfFileTankdata;
 import net.sf.jdivelog.model.uddf.file.UddfFileWayAltitude;
 import net.sf.jdivelog.model.uddf.file.UddfFileWayPoint;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 
 /**
  * 

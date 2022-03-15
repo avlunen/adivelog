@@ -1,6 +1,6 @@
 package net.sf.jdivelog.model.uddf;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 
 /**
  * Configures the Digester for an UDDF File

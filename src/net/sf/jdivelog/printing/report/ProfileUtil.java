@@ -81,9 +81,10 @@ public class ProfileUtil {
         JPEGImageWriter w = new JPEGImageWriter();
         ImageWriterParams params = new ImageWriterParams();
         params.setJPEGQuality(quality / 100.0f, false);
-        w.writeImage(img, out, params);
+        w.writeImage(img, out);
         out.close();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException("Error writing profile!", e);
         }
         return file;

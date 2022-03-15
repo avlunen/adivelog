@@ -29,7 +29,7 @@ import java.util.TreeSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.SAXException;
 
 public class SDM2FileLoader {

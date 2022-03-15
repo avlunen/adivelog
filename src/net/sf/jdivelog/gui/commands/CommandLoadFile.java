@@ -62,7 +62,7 @@ import net.sf.jdivelog.model.udcf.Dive;
 import net.sf.jdivelog.model.udcf.Gas;
 import net.sf.jdivelog.util.UnitConverter;
 
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.xml.sax.SAXException;
 
 /**

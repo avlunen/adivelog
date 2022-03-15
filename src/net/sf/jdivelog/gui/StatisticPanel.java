@@ -242,7 +242,8 @@ public class StatisticPanel extends JPanel implements ActionListener {
             }
             else if (TYPE_BAR3D.equals(type)) {
                 CategoryDataset dataset = DatasetFactory.getCategoryDataset(data);
-                JFreeChart chart = ChartFactory.createBarChart3D(data.getName(), data.getCatLabel(), data.getValLabel(), dataset, getOrientation(orientation),
+                // TODO check new way of creating a 3d bar chart
+                JFreeChart chart = ChartFactory.createBarChart(data.getName(), data.getCatLabel(), data.getValLabel(), dataset, getOrientation(orientation),
                         false, true, false);
                 return chart;
             }
