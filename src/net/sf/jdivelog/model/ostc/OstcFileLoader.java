@@ -40,13 +40,15 @@ public class OstcFileLoader {
 
                 if (protocol != null) {
                     dives.addAll(new OstcAdapter(protocol.parseAll(bytes)));
-                } else {
+                }
+                else {
                     LOGGER.log(
                             Level.SEVERE,
                             "could not find an OSTC protocol for firmware version "
                                     + VersionRange.getVersion(bytes[264], bytes[265]));
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 LOGGER.log(Level.SEVERE, "failed to load OSTC file", e);
             }
         }

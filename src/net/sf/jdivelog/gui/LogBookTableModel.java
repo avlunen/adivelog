@@ -303,7 +303,8 @@ public class LogBookTableModel extends TableSorter implements SortableTableModel
                 buf.setLength(0);
                 mandatory = false;
                 forbidden = false;
-            } else if (!quoted && keyword.charAt(i) == '"') {
+            }
+            else if (!quoted && keyword.charAt(i) == '"') {
                 quoted = true;
                 String s = buf.toString().trim();
                 if (s.length() > 0) {
@@ -319,7 +320,8 @@ public class LogBookTableModel extends TableSorter implements SortableTableModel
                     }
                 }
                 buf.setLength(0);
-            } else if (!quoted && keyword.charAt(i) == ' ') {
+            }
+            else if (!quoted && keyword.charAt(i) == ' ') {
                 String s = buf.toString().trim();
                 if (s.length() > 0) {
                     if (mandatory) {
@@ -334,7 +336,8 @@ public class LogBookTableModel extends TableSorter implements SortableTableModel
                 buf.setLength(0);
                 mandatory = false;
                 forbidden = false;
-            } else if (!quoted && keyword.charAt(i) == '+') {
+            }
+            else if (!quoted && keyword.charAt(i) == '+') {
                 String s = buf.toString().trim();
                 if (s.length() > 0) {
                     if (mandatory) {
@@ -349,14 +352,16 @@ public class LogBookTableModel extends TableSorter implements SortableTableModel
                 mandatory = true;
                 forbidden = false;
                 buf.setLength(0);
-            } else if (!quoted && keyword.charAt(i) == '-') {
+            }
+            else if (!quoted && keyword.charAt(i) == '-') {
                 if (i == 0 || keyword.charAt(i-1) == ' ') {
                     forbidden = true;
                     mandatory = false;
                 } else {
                     buf.append(keyword.charAt(i));
                 }
-            } else {
+            }
+            else {
                 buf.append(keyword.charAt(i));
             }
         }
@@ -365,11 +370,9 @@ public class LogBookTableModel extends TableSorter implements SortableTableModel
             if (mandatory) {
                 mandatoryList.add(s);
                 keywordList.add(s);
-            } else if (forbidden) {
-                forbiddenList.add(s);
-            } else {
-                keywordList.add(s);
             }
+            else if (forbidden) { forbiddenList.add(s); }
+            else { keywordList.add(s); }
         }
         double caseSensitivePoints = 100.0 / keywordList.size();
         double caseInsensitivePoints = 99.0 / keywordList.size();
@@ -391,11 +394,8 @@ public class LogBookTableModel extends TableSorter implements SortableTableModel
         Iterator<String> wordIt = keywordList.iterator();
         while (wordIt.hasNext()) {
             String word = wordIt.next();
-            if (value.contains(word)) {
-                points += caseSensitivePoints;
-            } else if (upperValue.contains(word.toUpperCase())) {
-                points += caseInsensitivePoints;
-            }
+            if (value.contains(word)) { points += caseSensitivePoints; }
+            else if (upperValue.contains(word.toUpperCase())) { points += caseInsensitivePoints; }
         }
         return points;
     }

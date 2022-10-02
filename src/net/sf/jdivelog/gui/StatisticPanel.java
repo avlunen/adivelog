@@ -221,10 +221,10 @@ public class StatisticPanel extends JPanel implements ActionListener {
             status.infiniteProgressbarStart();
             
             if (TYPE_PIE.equals(type)) {
-	            PieDataset dataset = DatasetFactory.getPieDataset(data);
+	            PieDataset<?> dataset = DatasetFactory.getPieDataset(data);
 	            JFreeChart chart = ChartFactory.createPieChart(data.getName(), dataset, false, true, false);
 	            // Post processing
-	            PiePlot plot = (PiePlot)chart.getPlot();
+	            PiePlot<?> plot = (PiePlot<?>)chart.getPlot();
 	            plot.setOutlinePaint(Color.LIGHT_GRAY);
 	            plot.setBackgroundPaint(java.awt.Color.decode(cb));
 	            chart.setBackgroundPaint(Color.white);
@@ -236,7 +236,7 @@ public class StatisticPanel extends JPanel implements ActionListener {
                 return chart;
             }
             else if (TYPE_PIE3D.equals(type)) {
-                PieDataset dataset = DatasetFactory.getPieDataset(data);
+                PieDataset<?> dataset = DatasetFactory.getPieDataset(data);
                 JFreeChart chart = ChartFactory.createPieChart3D(data.getName(), dataset, true, true, false);
                 return chart;
             }

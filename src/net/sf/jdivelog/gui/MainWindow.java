@@ -272,7 +272,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
 
     private JScrollPane diveSiteTablePane = null;
 
-    // avl
+ // avl
     private JLabel count_divesLabel = null;
 
     private JLabel complete_divetimeLabel = null;
@@ -304,7 +304,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
     private JToggleButton mapButton = null;
     private MapPanel mapPanel = null;
     //End of avl
-
+    
     private JMenuItem downloadMenuItem;
 
     private JMenuItem renumberingMenuItem;
@@ -437,7 +437,8 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         if (width == null || height == null) {
             // maximize the MainWindow
             this.setSize(getToolkit().getScreenSize());
-        } else {
+        }
+        else {
             int w = getToolkit().getScreenSize().width;
             int h = getToolkit().getScreenSize().height;
             int x = 0;

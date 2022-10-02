@@ -57,6 +57,7 @@ import net.sf.jdivelog.model.aladin.AladinData;
  * displaying the set up window
  * 
  * @author Volker Holthaus <volker.urlaub@gmx.de>
+ * @author Alexander von Lünen
  */
 
 public class AladinInterface implements ComputerInterface {
@@ -157,27 +158,18 @@ public class AladinInterface implements ComputerInterface {
                 this.properties.setProperty(name, properties.get(name).toString());
             }
         }
-        getConfigurationPanel().setCommPort(this.properties.getProperty(PROPERTY_NAMES[0]));
+        
         try {
+        	getConfigurationPanel().setCommPort(this.properties.getProperty(PROPERTY_NAMES[0]));
             getConfigurationPanel().setModel(Integer.parseInt(this.properties.getProperty(PROPERTY_NAMES[1])));
-        } catch (NumberFormatException nfe) {
-        }
-        try {
             getConfigurationPanel().setConnectionSpeed(Integer.valueOf(this.properties.getProperty(PROPERTY_NAMES[2])));
-        } catch (NumberFormatException nfe) {
-        }
-        try {
             getConfigurationPanel().setDataBits(DataBits.valueOf(this.properties.getProperty(PROPERTY_NAMES[3])));
-        } catch (NullPointerException npe) {
-        }
-        try {
             getConfigurationPanel().setStopBits(StopBits.valueOf(this.properties.getProperty(PROPERTY_NAMES[4])));
-        } catch (NullPointerException npe) {
-        }
-        try {
             getConfigurationPanel().setParity(Parity.valueOf(this.properties.getProperty(PROPERTY_NAMES[5])));
-        } catch (NullPointerException npe) {
-        }
+        }    
+        catch (Exception e) {
+        	e.printStackTrace();
+        }        
     }
 
     /**
@@ -342,12 +334,15 @@ public class AladinInterface implements ComputerInterface {
         ci.initialize(p);
         try {
             ci.transfer(null, null);
-        } catch (TransferException e) {
+        }
+        catch (TransferException e) {
             LOGGER.log(Level.SEVERE, "transfer failed", e);
-        } catch (NotInitializedException e) {
-            LOGGER.log(Level.SEVERE, "transfer failed", e);
-        } catch (InvalidConfigurationException e) {
-            LOGGER.log(Level.SEVERE, "transfer failed", e);
+        }
+        catch (NotInitializedException e) {
+            LOGGER.log(Level.SEVERE, "transfer failed -- not initialized", e);
+        }
+        catch (InvalidConfigurationException e) {
+            LOGGER.log(Level.SEVERE, "transfer failed -- invalid config", e);
         }
     }
 
