@@ -7,6 +7,8 @@ This is in an early stage, and I am not sure how much time I will have to work o
 
 In this initial release (call it an alpha version), I have fixed some bugs of JDivelog. I also removed the dive planner/deco module from it; personally, I find "hobby" deco planners questionable, and there are many others out there. Instead, I have replaced it with a mapping feature (although the code is still here, but will be removed in the future); which means you can now create a map with your dive sites, provided you have added coordinates to your list of dive sites.
 
+The feature to download data from dive computers is still available, but I reckon it is broken at this point. I may or may not fix this in the future...
+
 The software dependencies are as follows (none of these are included in this code repository):
 
 JFreeChart (https://www.jfree.org/)
