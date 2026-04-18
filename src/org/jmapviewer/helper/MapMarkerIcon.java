@@ -17,7 +17,7 @@ import org.openstreetmap.gui.jmapviewer.interfaces.MapMarker;
  * from WikiMedia Commons: 
  * https://commons.wikimedia.org/wiki/File:Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Scuba_Diving_%E2%80%93_Sports_%E2%80%93_Classic.png
  *
- * @author Alexander von LÃ¼nen
+ * @author Alexander von Lünen
  * @since 16/08/2020
  *
  */
@@ -122,7 +122,7 @@ public class MapMarkerIcon extends MapObjectImpl implements MapMarker {
    
    @Override
    public void paint(Graphics g, Point position, int radius) {
-      String filename = "/net/sf/jdivelog/gui/resources/icons_32x32/Map_marker_icon_Nicolas_Mollet_Scuba_Diving_Sports_Dark.png";
+      String filename = "/net/sf/jdivelog/gui/resources/icons_32x32/Map_marker_icon_–_Nicolas_Mollet_–_Scuba_Diving_–_Sports_–_Dark.png";
       java.net.URL imgURL = getClass().getResource(filename);
       //System.out.println(this.zoom_level);
       

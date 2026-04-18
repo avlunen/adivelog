@@ -567,8 +567,11 @@ public class OSTCInterface implements ComputerInterface {
     private class OSTCConfigurationPanel extends JPanel {
 
         private static final long serialVersionUID = -3841826987380000963L;
+
         private Vector<String> availablePorts;
+
         private JComboBox<String> protocolList;
+
         private JComboBox<String> portList;
 
         public OSTCConfigurationPanel() {
