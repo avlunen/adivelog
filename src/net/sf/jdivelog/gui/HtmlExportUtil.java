@@ -78,6 +78,7 @@ import org.apache.batik.ext.awt.image.spi.ImageWriterParams;
  * Tool to export jdivelog logbooks to a web page
  * 
  * @author Pascal Pellmont <jdivelog@pellmont.dyndns.org>
+ * @author Alexander von Lünen
  */
 public class HtmlExportUtil {
 
@@ -601,7 +602,8 @@ public class HtmlExportUtil {
                 String fn = entry.getName();
                 if (entry.isDirectory()) {
                     new File(outputDir, entry.getName()).mkdir();
-                } else {
+                }
+                else {
                     File destfile = new File(outputDir, fn);
                     FileOutputStream fos = new FileOutputStream(destfile);
                     InputStream is = zipfile.getInputStream(entry);
@@ -609,7 +611,9 @@ public class HtmlExportUtil {
                     scp(destfile);
                 }
             }
-        } catch (IOException ioe) {
+            zipfile.close();
+        }
+        catch (IOException ioe) {
             LOGGER.log(Level.SEVERE, "error writing stylesheet", ioe);
             throw new ExportException(Messages.getString("export.error.could_not_copy_skin")); //$NON-NLS-1$
         }

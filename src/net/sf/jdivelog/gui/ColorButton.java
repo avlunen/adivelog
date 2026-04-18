@@ -37,6 +37,10 @@ import javax.swing.JButton;
 
 import com.bric.swing.ColorPicker;
 
+/**
+ * @author Pascal Pellmont
+ * @author Alexander von Lünen
+ */
 public class ColorButton extends JButton implements ActionListener, Icon {
     
     private static final long serialVersionUID = -1992821268276381084L;
@@ -89,7 +93,7 @@ public class ColorButton extends JButton implements ActionListener, Icon {
     }
     
     public void actionPerformed(ActionEvent e) {
-        Color newColor = ColorPicker.showDialog(window, getColor(), opacity);
+        Color newColor = ColorPicker.showDialog(window, "...", getColor(), opacity); // TODO set this in properties
         if (newColor != null) {
             setColor(newColor);
         }
