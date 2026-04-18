@@ -21,7 +21,6 @@
  */
 package net.sf.jdivelog.gui;
 
-import java.applet.Applet;
 import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -48,7 +47,9 @@ import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+
 import java.text.DecimalFormat;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -86,22 +87,18 @@ import net.sf.jdivelog.util.UnitConverter;
 public class DiveProfile extends JComponent {
 
     private static final BasicStroke PPO2_STROKE = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1, new float[] { 1, 3 }, 0);
-
     private static final long serialVersionUID = 3257565101040088629L;
-
     private static final DecimalFormat DEPTH_FORMAT = new DecimalFormat("##0.0");
-
     private static final DecimalFormat SECOND_FORMAT = new DecimalFormat("00");
-
     private static final int segments = 20;
 
     private static Color[] MIX_COLORS;
-
     {
         String colors = Messages.getString("profile.colors");
         if (colors == null) {
             MIX_COLORS = new Color[] { Color.BLACK, Color.PINK, Color.MAGENTA, Color.ORANGE, Color.CYAN, Color.PINK, Color.RED, Color.DARK_GRAY, Color.YELLOW };
-        } else {
+        }
+        else {
             StringTokenizer st = new StringTokenizer(colors, " ,;:");
             ArrayList<Color> colorsList = new ArrayList<Color>();
             while (st.hasMoreTokens()) {
@@ -115,91 +112,48 @@ public class DiveProfile extends JComponent {
     }
 
     private Image alarmImage;
-
     private Image decoImage;
-
     private Image bookmarkImage;
-
     private Image surfaceImage;
-
     private Image attentionImage;
-
     private Image slowImage;
-
     private Image decoceilingpassedImage;
-
     private Image endofImage;
-
     private Image safetystopceilingpassedImage;
-
     private final int LEFTLABEL_SIZE = 200;
-
     private final int RIGHTLABEL_SIZE = 80;
-
     private final int TOPLABEL_SIZE = 20;
-
     private final int BOTTOMLABEL_SIZE = 120;
-
     private final int GRID_X = 12;
-
     private final int GRID_Y = 8;
-
     private final double TIME_PRECISION = 0.5;
-
     private final double PPO2_PRECISION = 0.25;
-
     private final double ALT_PRECISION = 0.5;
-
     private JDive dive = null;
-
     private Double maxTime = null;
-
     private Double maxDepth = null;
-
     private Double maxTemp = null;
-
     private double maxPPO2;
-
     private ArrayList<Gas> gasList = null;
-
     private HashMap<Integer, String> gases = null;
-
     private HashMap<Integer, TreeSet<TimeDepth>> depths = null;
-
     private HashMap<String, TreeSet<TimeDepth>> ppo2s = null;
-    
     private HashMap<Integer, String> time_ppo2s = null;
-
     private TreeSet<TimeAlarm> alarms = null;
-
     private HashMap<Rectangle, String> alarmPositions = null;
-
     private TreeSet<TimeTemperature> temperatures = null;
-
     private TreeSet<TimeDepth> decoinfos;
-
     private double timeScale = 1;
-
     private double ppo2Scale = 1;
-
     private double altScale = 1;
-
     private boolean isCrossHairMode;
-
     private ArrayList<DiveProfile> comparisonProfiles;
-
     private boolean comparisonProfile = false;
-
     private boolean drawTemp = false;
-
     private boolean drawDeco = false;
-
     private Double[] temperatureSegments;
-
     private Double temperatureSegmentMax;
-
     private Double temperatureSegmentMin;
-
     private final ProfileSettings profileSettings;
 
     public DiveProfile(ProfileSettings profileSettings) {
@@ -310,7 +264,8 @@ public class DiveProfile extends JComponent {
             }
             if (dive.getDive().getMode() == Dive.MODE_TIME) {
                 parseSamplesTimeMode();
-            } else {
+            }
+            else {
                 parseSamplesDeltaMode();
             }
             Double maxTime = this.maxTime;
@@ -1127,7 +1082,7 @@ public class DiveProfile extends JComponent {
         private void findMainContainer() {
             Container parent = component.getParent();
             while (true) {
-                if ((parent instanceof Applet) || (parent instanceof Frame)) {
+                if (parent instanceof Frame) {
                     mainContainer = parent;
                     break;
                 } else if (parent == null) {

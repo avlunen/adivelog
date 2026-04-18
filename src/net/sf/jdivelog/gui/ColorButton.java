@@ -18,6 +18,10 @@
  * You should have received a copy of the GNU General Public License
  * along with JDiveLog; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ * 
+ * Updated by avl
+ * @author Alexander von Lünen
+ * @since 17 Apr 2026
  */
 package net.sf.jdivelog.gui;
 
@@ -89,7 +93,8 @@ public class ColorButton extends JButton implements ActionListener, Icon {
     }
     
     public void actionPerformed(ActionEvent e) {
-        Color newColor = ColorPicker.showDialog(window, getColor(), opacity);
+        //Color newColor = ColorPicker.showDialog(window, getColor(), opacity); // TODO updated, remove this line after test
+       Color newColor = ColorPicker.showDialog(window, "...", getColor(), opacity); // TODO use messages.properties to set the window title
         if (newColor != null) {
             setColor(newColor);
         }
