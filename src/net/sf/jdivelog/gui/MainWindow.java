@@ -198,7 +198,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
 
     private JToolBar diveSiteToolBar = null;
 
-    private JTabbedPane jDiveComputerTabbedPane = null;
+    //private JTabbedPane jDiveComputerTabbedPane = null;
 
     private JTabbedPane jConfigurationTabbedPane = null;
 
@@ -305,7 +305,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
     private MapPanel mapPanel = null;
     //End of avl
     
-    private JMenuItem downloadMenuItem;
+    private JMenuItem downloadMenuItem; // BUBU
 
     private JMenuItem renumberingMenuItem;
 
@@ -327,7 +327,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
 
     private JButton deleteSiteButton = null;
 
-    private JButton downloadButton = null;
+    private JButton downloadButton = null; // BUBU
 
     private JLabel searchLabel = null;
 
@@ -339,7 +339,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
 
     private JToggleButton documentsButton = null;
 
-    private JToggleButton diveComputerButton = null;
+    //private JToggleButton diveComputerButton = null; // BUBU
 
     private JToggleButton diveStatisticButton = null;
 
@@ -349,21 +349,18 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
 
     private StatusBar statusBar;
 
+    // BUBU this block
     private SuuntoConfigurationPanel suuntoSettingsPanel;
-
     private OSTCSettingsPanel ostcSettingsPanel;
-
     private OSTCFlashPanel ostcFlashPanel;
-
     private Dr5SettingsPanel dr5SettingsPanel;
-
     private DiveSimulationPanel ostcSimulationPanel;
 
     private LogbookChangeNotifier logbookChangeNotifier;
 
     private MixDatabase gasDatabase;
 
-    private DiveComputerDownloadThread downloadThread;
+    private DiveComputerDownloadThread downloadThread; // BUBU
 
     private JMenuItem salinityFixMenuItem;
 
@@ -506,7 +503,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             fileMenu.add(getSaveMenuItem());
             fileMenu.add(getSaveAsMenuItem());
             fileMenu.addSeparator();
-            fileMenu.add(getDownloadMenuItem());
+            //fileMenu.add(getDownloadMenuItem());
             JMenu importMenu = new JMenu();
             importMenu.setText(Messages.getString("import")); //$NON-NLS-1$
             importMenu.add(getImportMenuItem());
@@ -597,7 +594,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             aboutMenuItem.setText(Messages.getString("about")); //$NON-NLS-1$
             aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
-                    String message = "ADiveLog "+ Messages.getString("aversion") + "\n(c) 2020 - 2022 Alexander von Lünen <avl1@gmx.de>\nderived from\n" + //$NON-NLS-1$ 
+                    String message = "ADiveLog "+ Messages.getString("aversion") + "\n(c) 2020 - 2022 Alexander von Lï¿½nen <avl1@gmx.de>\nderived from\n" + //$NON-NLS-1$ 
                             "JDiveLog "+ Messages.getString("version") + "\nhttp://www.jdivelog.org/\n\nCopyright (C) 2005 - 2009 Pascal Pellmont <jdivelog@ppo2.ch>\n"+
                             "JDiveLog is distributed under the terms of the GPL v2.\n\n" + //$NON-NLS-1$
                             "JDiveLog comes with ABSOLUTELY NO WARRANTY!\n\nBe sure you have read and understand the LICENSE file."; //$NON-NLS-1$
@@ -824,7 +821,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         }
         return settingsMenuItem;
     }
-
+/*
     private JMenuItem getDownloadMenuItem() {
         if (downloadMenuItem == null) {
             downloadMenuItem = new JMenuItem(Messages.getString("download"));
@@ -835,7 +832,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         }
         return downloadMenuItem;
     }
-
+*/
     private JMenuItem getSaveAsMenuItem() {
         if (saveAsMenuItem == null) {
             saveAsMenuItem = new JMenuItem();
@@ -937,14 +934,14 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             jToolBar.add(getFileSaveButton());
             jToolBar.addSeparator();
             toolbarButtons.add(getLogBookButton());
-            toolbarButtons.add(getDiveComputerButton());
+            //toolbarButtons.add(getDiveComputerButton());
             toolbarButtons.add(getDiveStatisticButton());
             toolbarButtons.add(getMapButton()); // avl
             toolbarButtons.add(getDocumentsButton());
             toolbarButtons.add(getConfigurationButton());
             toolbarButtons.setSelected(getLogBookButton().getModel(), true);
             jToolBar.add(getLogBookButton());
-            jToolBar.add(getDiveComputerButton());
+            //jToolBar.add(getDiveComputerButton());
             jToolBar.add(getDiveStatisticButton());
             jToolBar.add(getMapButton()); // avl
             jToolBar.add(getConfigurationButton());
@@ -971,7 +968,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         }
         return diveSiteToolBar;
     }
-
+/*
     private JTabbedPane getJDiveComputerTabbedPane() {
         if (jDiveComputerTabbedPane == null) {
             jDiveComputerTabbedPane = new JTabbedPane();
@@ -983,7 +980,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         }
         return jDiveComputerTabbedPane;
     }
-
+*/
     private JTabbedPane getJConfigurationTabbedPane() {
         if (jConfigurationTabbedPane == null) {
             jConfigurationTabbedPane = new JTabbedPane();
@@ -1248,7 +1245,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         }
         return documentsButton;
     }
-
+/*
     private JToggleButton getDiveComputerButton() {
         if (diveComputerButton == null) {
             diveComputerButton = new JToggleButton();
@@ -1260,7 +1257,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         }
         return diveComputerButton;
     }
-
+*/
     private JToggleButton getDiveStatisticButton() {
         if (diveStatisticButton == null) {
             diveStatisticButton = new JToggleButton();
@@ -1323,7 +1320,6 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
                 logBookPanel.add(getInfoPanel(), null);
                 logBookPanel.add(getJToolBarLogBook(), null);
                 logBookPanel.add(getLogBookTablePane(), null);
-
             }
         }
         return logBookPanel;
@@ -1604,7 +1600,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         return deleteSiteButton;
     }
 
-    private JButton getDownloadButton() {
+    private JButton getDownloadButton() { // BUBU
         if (downloadButton == null) {
             downloadButton = new JButton(new ImageIcon(getClass().getResource(
                     "/net/sf/jdivelog/gui/resources/icons/sync.gif"))); //$NON-NLS-1$
@@ -1719,7 +1715,8 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
                     }
                 }
             }
-        } finally {
+        }
+        finally {
             application.setVisible(true);
         }
     }
@@ -1803,9 +1800,11 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         else if (e.getSource() == documentsButton) {
             showDocuments();
         }
+        /*
         else if (e.getSource() == diveComputerButton) {
             showDiveComputer();
         }
+        */
         else if (e.getSource() == diveStatisticButton) {
             showDivestatistics();
         }
@@ -1818,7 +1817,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             showConfiguration();
         }
         else if (e.getSource() == downloadButton) {
-            downloadFromComputer();
+            //downloadFromComputer();
         }
         else if (e.getSource() == saveMenuItem) {
             saveFile();
@@ -1935,13 +1934,13 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
        getJContentPane().repaint();
    }
     // end of avl
-
+/*
     private void showDiveComputer() {
         getJContentPane().remove(getJContentPane().getComponent(1));
         getJContentPane().add(getJDiveComputerTabbedPane(), 1);
         getJContentPane().repaint();
     }
-
+*/
     private void showConfiguration() {
         getJContentPane().remove(getJContentPane().getComponent(1));
         getJContentPane().add(getJConfigurationTabbedPane(), 1);
@@ -2209,7 +2208,8 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
                 };
             };
             downloader.start();
-        } else {
+        }
+        else {
             new MessageDialog(MainWindow.this, Messages.getString("transfer_failed"),
                     Messages.getString("driver_not_set"), null, MessageDialog.MessageType.ERROR);
         }
