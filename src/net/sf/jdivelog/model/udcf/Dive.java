@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 
 /**
  * Description: Dive informations
@@ -36,7 +35,6 @@ import java.util.Iterator;
  * @version 2.7
  */
 public class Dive implements Comparable<Dive> {
-
    public static final int MODE_DELTA = 0;
    public static final int MODE_TIME = 1;
 
@@ -186,49 +184,52 @@ public class Dive implements Comparable<Dive> {
       sb.append("</HOUR><MINUTE>");
       sb.append(String.valueOf(gc.get(Calendar.MINUTE)));
       sb.append("</MINUTE></TIME>");
+      
       sb.append("<SURFACEINTERVAL>");
       if (surfaceinterval != null) {
          sb.append(surfaceinterval);
       }
       sb.append("</SURFACEINTERVAL>");
+      
       sb.append("<TEMPERATURE>");
       if (temperature != null) {
          sb.append(String.valueOf(temperature));
       }
       sb.append("</TEMPERATURE>");
+      
       sb.append("<surfaceTemperature>");
       if (surfaceTemperature != null) {
          sb.append(String.valueOf(surfaceTemperature));
       }
       sb.append("</surfaceTemperature>");
+      
       sb.append("<DENSITY>");
       if (density != null) {
          sb.append(String.valueOf(density));
       }
       sb.append("</DENSITY>");
+      
       sb.append("<ALTITUDE>");
       if (altitude != null) {
          sb.append(String.valueOf(altitude));
       }
       sb.append("</ALTITUDE>");
+      
       sb.append("<GASES>");
-      Iterator<Gas> it = gases.iterator();
-      while (it.hasNext()) {
-         sb.append(it.next().toString());
-      }
+      for(Gas g : gases) sb.append(g.toString());
       sb.append("</GASES>");
+      
       if (MODE_TIME == mode) {
          sb.append("<TIMEDEPTHMODE/>");
       }
       else {
          sb.append("<DELTAMODE/>");
       }
+      
       sb.append("<SAMPLES>");
-      Iterator<Sample> sit = samples.iterator();
-      while (sit.hasNext()) {
-         sb.append(sit.next().toString());
-      }
+      for(Sample s : samples) sb.append(s.toString());
       sb.append("</SAMPLES>");
+      
       sb.append("</DIVE>");
    }
 
@@ -375,9 +376,8 @@ public class Dive implements Comparable<Dive> {
       if (getSamples() == null) {
          return null;
       }
-      Iterator<Sample> it = getSamples().iterator();
-      while (it.hasNext()) {
-         Object o = it.next();
+      
+      for(Object o : getSamples()) {
          if (o instanceof Depth) {
             Depth d = (Depth) o;
             Double val = d.getValue();
@@ -392,9 +392,7 @@ public class Dive implements Comparable<Dive> {
    }
 
    public void addSampleTimeOffset(Double offset) {
-      Iterator<Sample> it = getSamples().iterator();
-      while (it.hasNext()) {
-         Object o = it.next();
+      for(Object o : getSamples()) {
          if (o instanceof Time) {
             Time d = (Time) o;
             d.setValue(d.getValue() + offset);
@@ -408,9 +406,8 @@ public class Dive implements Comparable<Dive> {
       if (getSamples() == null) {
          return null;
       }
-      Iterator<Sample> it = getSamples().iterator();
-      while (it.hasNext()) {
-         Object o = it.next();
+            
+      for(Object o : getSamples()) {
          if (o instanceof Depth) {
             Depth d = (Depth) o;
             Double val = d.getValue();
@@ -430,9 +427,8 @@ public class Dive implements Comparable<Dive> {
             long units = 0;
             double factor = 0;
             long counter = 0;
-            Iterator<Sample> it = getSamples().iterator();
-            while (it.hasNext()) {
-               Sample s = it.next();
+            
+            for(Sample s : getSamples()) {
                if (s instanceof Delta) {
                   units += factor * counter;
                   counter = 0;
@@ -447,10 +443,9 @@ public class Dive implements Comparable<Dive> {
             duration = Double.valueOf((double) units);
          }
          else {
-            Iterator<Sample> it = getSamples().iterator();
             Double time = null;
-            while (it.hasNext()) {
-               Sample s = it.next();
+            
+            for(Sample s : getSamples()) {
                if (s instanceof Time) {
                   Time t = (Time) s;
                   time = t.getValue();
