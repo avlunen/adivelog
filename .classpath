@@ -28,5 +28,6 @@
 	<classpathentry kind="lib" path="/home/avl/data/src/java/adivelog/lib/xmlgraphics-commons-2.2.jar"/>
 	<classpathentry kind="lib" path="/home/avl/data/src/java/adivelog/lib/jSerialComm-2.11.4.jar"/>
 	<classpathentry kind="lib" path="rxtx/RXTXcomm.jar"/>
+	<classpathentry kind="lib" path="/home/avl/data/src/java/jar/garmin-fit-sdk-21.195.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

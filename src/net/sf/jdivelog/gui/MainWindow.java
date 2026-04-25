@@ -113,6 +113,7 @@ import net.sf.jdivelog.gui.util.TableSorter;
 import net.sf.jdivelog.model.DiveSite;
 import net.sf.jdivelog.model.JDive;
 import net.sf.jdivelog.model.JDiveLog;
+import net.sf.jdivelog.model.garmin.GarminFitFileLoader;
 import net.sf.jdivelog.model.Masterdata;
 import net.sf.jdivelog.model.Mix;
 import net.sf.jdivelog.model.MixDatabase;
@@ -140,163 +141,99 @@ import net.sf.jdivelog.util.UnitConverter;
  * @author avl
  * @version 2.5
  * @version 2.51
+ * @version 2.7
  */
 public class MainWindow extends JFrame implements ActionListener, CommandManagerListener, WindowListener,
         LogbookChangeListener, LogbookReference {
 
     private static final Logger LOGGER = Logger.getLogger(MainWindow.class.getName());
-
     private static final long serialVersionUID = 3545800996174770486L;
-
     private JPanel mainPanel = new JPanel();
-
     private DiveDetailPanel detailPane = null;
-
     private CommandManager commandManager = CommandManager.getInstance();
-
     private File file = null;
-
     private JDiveLog logBook = new JDiveLog();
-
     private LogBookTableModel logBookTableModel = null;
-
     private DivesiteTableModel diveSiteTableModel = null;
-
     private JPanel jContentPane = null;
 
     private JMenuBar jJMenuBar = null;
-
     private JMenu fileMenu = null;
-
     private JMenu editMenu = null;
-
     private JMenu helpMenu = null;
-
     private JMenuItem exitMenuItem = null;
-
     private JMenuItem aboutMenuItem = null;
-
     private JMenuItem undoMenuItem = null;
-
     private JMenuItem redoMenuItem = null;
-
     private JMenuItem saveMenuItem = null;
-
     private JMenuItem saveAsMenuItem = null;
-
     private JMenuItem buddylistMenuItem = null;
-
     private JMenuItem divetypeMenuItem = null;
-
     private JMenuItem diveactivityMenuItem = null;
-
     private JMenuItem equipmentMenuItem = null;
 
     private JToolBar jToolBar = null;
-
     private JToolBar jToolBarLogBook = null;
-
     private JToolBar diveSiteToolBar = null;
 
     //private JTabbedPane jDiveComputerTabbedPane = null;
 
     private JTabbedPane jConfigurationTabbedPane = null;
-
     private JPanel buttonLogBookPanel = null;
-
     private JPanel diveSiteButtonPanel = null;
-
     private JPanel infoPanel = null;
-
     private JButton fileNewButton = null;
-
     private JPanel logBookPanel = null;
-
     private JTable logBookTable = null;
-
     private JPanel diveSitePanel = null;
-
     private DocumentsPanel documentsPanel = null;
-
     private JTable diveSiteTable = null;
-
     private JButton fileOpenButton = null;
-
     private JButton fileSaveButton = null;
 
     private JMenuItem openMenuItem = null;
-
     private JMenuItem newMenuItem = null;
-
     private JMenuItem printMenuItem = null;
-
     private JMenuItem importMenuItem = null;
-
+    private JMenuItem importGarminFitMenuItem = null;
     private JMenuItem importWLOGMenuItem = null;
-
     private JMenuItem importAladinMenuItem = null;
-
     private JMenuItem importJDivelogMenuItem = null;
-
     private JMenuItem importMemoMouseMenuItem = null;
-
     private JMenuItem importOstcMenuItem = null;
-
     private JMenuItem importPredatorMenuItem = null;
-
     private JMenuItem importSmartMenuItem = null;
-
     private JMenuItem importSuuntoNGMenuItem = null;
-
     private JMenuItem importDataTrakMenuItem = null;
-
     private JMenuItem importSDEMenuItem = null;
-
     private JMenuItem importCressiMenuItem = null;
-
     private JMenuItem importMacDiveLogItem = null;
-
     private JMenuItem importCressiLgbMenuItem = null;
 
     private JMenuItem settingsMenuItem = null;
-
     private StatisticPanel statisticPanel = null;
-
     private GasBlendingPanel gasBlendingPanel = null;
-
     private GasOverflowPanel gasOverflowPanel = null;
-
     private JButton htmlExportButton = null;
-
     private JScrollPane logBookTablePane = null;
-
     private JScrollPane diveSiteTablePane = null;
 
  // avl
     private JLabel count_divesLabel = null;
-
     private JLabel complete_divetimeLabel = null;
-
     private JLabel average_depthLabel = null;
-
     private JLabel average_amvLabel = null;
-
     private JLabel average_temperaturLabel = null;
-    
+ 
     private JLabel max_depthLabel = null;
     private JLabel min_tempLabel = null;
     private JLabel max_tempLabel = null;
     
     private JTextField count_divesField = null;
-
     private JTextField complete_divetimeField = null;
-
     private JTextField average_depthField = null;
-
     private JTextField average_amvField = null;
-
-    private JTextField average_temperaturField = null;
-    
+    private JTextField average_temperaturField = null;  
     private JTextField max_depthField = null;
     private JTextField min_tempField = null;
     private JTextField max_tempField = null;
@@ -306,43 +243,26 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
     //End of avl
     
     private JMenuItem downloadMenuItem; // BUBU
-
     private JMenuItem renumberingMenuItem;
-
     private JMenu extraMenu;
-
     private JMenuItem slideshowMenuItem;
 
     private TableSorter diveSiteModel;
-
     private TableSorter logBookModel;
 
     private JButton newDiveButton = null;
-
     private JButton deleteDiveButton = null;
-
     private JButton assemblyDiveButton = null;
-
     private JButton newSiteButton = null;
-
     private JButton deleteSiteButton = null;
-
     private JButton downloadButton = null; // BUBU
-
     private JLabel searchLabel = null;
-
     private JTextField searchField = null;
-
     private JButton searchButton = null;
-
     private JToggleButton logBookButton = null;
-
     private JToggleButton documentsButton = null;
-
     //private JToggleButton diveComputerButton = null; // BUBU
-
     private JToggleButton diveStatisticButton = null;
-
     private JToggleButton configurationButton = null;
 
     private ButtonGroup toolbarButtons = null;
@@ -506,6 +426,7 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
             //fileMenu.add(getDownloadMenuItem());
             JMenu importMenu = new JMenu();
             importMenu.setText(Messages.getString("import")); //$NON-NLS-1$
+            importMenu.add(getImportGarminFitItem());
             importMenu.add(getImportMenuItem());
             importMenu.add(getImportWLOGMenuItem());
             importMenu.add(getImportAladinMenuItem());
@@ -690,6 +611,18 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         return importMenuItem;
     }
 
+    // avl start
+    public JMenuItem getImportGarminFitItem() {
+       if(importGarminFitMenuItem == null) {
+          importGarminFitMenuItem = new JMenuItem();
+          importGarminFitMenuItem.setText(Messages.getString("import_garmin_file")); //$NON-NLS-1$
+          importGarminFitMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_DOWN_MASK, true));
+          importGarminFitMenuItem.addActionListener(this);
+       }
+       return importGarminFitMenuItem;
+    }
+    // end of avl
+    
     public JMenuItem getImportWLOGMenuItem() {
         if (importWLOGMenuItem == null) {
             importWLOGMenuItem = new JMenuItem();
@@ -1846,6 +1779,11 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
         else if (e.getSource() == importMenuItem) {
             importUdcf();
         }
+        // avl start
+        else if(e.getSource() == importGarminFitMenuItem) {
+           importGarminFit();
+        }
+        // end avl
         else if (e.getSource() == importWLOGMenuItem) {
             importWLOG();
         }
@@ -2746,7 +2684,25 @@ public class MainWindow extends JFrame implements ActionListener, CommandManager
      }
 
       return max_tempField;
-   }  
+   }
+   
+   private void importGarminFit() {
+      ExtensionFileFilter ff = new ExtensionFileFilter(Messages.getString("garmin_fit_file"), "fit"); //$NON-NLS-1$
+      ff.addExtension("fit"); //$NON-NLS-1$
+      FileChooser fc = new FileChooser();
+      fc.setMultiSelectionEnabled(true);
+      fc.setFileFilter(ff);
+      int ret = fc.showOpenDialog(this);
+      if (ret == FileChooser.APPROVE_OPTION) {
+          File[] f = fc.getSelectedFiles();
+          try {
+              new GarminFitFileLoader(this, f);
+          }
+          catch (Exception ex) {
+              throw new JDiveLogException(Messages.getString("error.could_not_open_file"), null, ex);
+          }
+      }
+  }
    // end of avl
 
    private class DelegatingMixDatabase implements MixDatabase {

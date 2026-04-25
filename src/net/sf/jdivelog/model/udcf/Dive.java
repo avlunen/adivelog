@@ -38,21 +38,13 @@ public class Dive implements Comparable<Dive> {
     public static final int MODE_TIME = 1;
     
     private Date date = null;
-    
     private String surfaceinterval;
-    
     private Double temperature;
-
     private Double surfaceTemperature;
-    
     private Double density;
-    
     private Double altitude;
-    
     private ArrayList<Gas> gases = new ArrayList<Gas>();
-    
     private int mode;
-    
     private ArrayList<Sample> samples;
         
     public void addGas(Gas gas) {
