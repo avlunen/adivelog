@@ -27,43 +27,31 @@ package net.sf.jdivelog.model.aladin;
  * @author Andr&eacute; Schenk
  * @version $Revision: 548 $
  */
-public class DepthProfileEntry
-{
-    public final Float depth20;
-    public final int   warnings20;
-    public final Float depth40;
-    public final int   warnings40;
-    public final Float depth00;
-    public final int   warnings00;
-    public final int   decompression;
+public class DepthProfileEntry {
+   public final Float depth20;
+   public final int warnings20;
+   public final Float depth40;
+   public final int warnings40;
+   public final Float depth00;
+   public final int warnings00;
+   public final int decompression;
 
-    public DepthProfileEntry (int [] bytes)
-    {
-        if ((bytes == null) || (bytes.length < 7)) {
-            throw new IllegalArgumentException
-                ("byte array for depth profile entry is invalid");
-        }
-        depth20       = new Float ((((bytes [0] * 256 + bytes [1]) >> 6) * 1000
-                                    / 64) / 100.0);
-        warnings20    = bytes [1] & 0x3f;
-        depth40       = new Float ((((bytes [2] * 256 + bytes [3]) >> 6) * 1000
-                                    / 64) / 100.0);
-        warnings40    = bytes [3] & 0x3f;
-        depth00       = new Float ((((bytes [4] * 256 + bytes [5]) >> 6) * 1000
-                                    / 64) / 100.0);
-        warnings00    = bytes [5] & 0x3f;
-        decompression = bytes [6];
-    }
+   public DepthProfileEntry(int[] bytes) {
+      if ((bytes == null) || (bytes.length < 7)) {
+         throw new IllegalArgumentException("byte array for depth profile entry is invalid");
+      }
+      depth20 = Float.valueOf((((bytes[0] * 256 + bytes[1]) >> 6) * 1000 / 64) / 100.0f);
+      warnings20 = bytes[1] & 0x3f;
+      depth40 = Float.valueOf((((bytes[2] * 256 + bytes[3]) >> 6) * 1000 / 64) / 100.0f);
+      warnings40 = bytes[3] & 0x3f;
+      depth00 = Float.valueOf((((bytes[4] * 256 + bytes[5]) >> 6) * 1000 / 64) / 100.0f);
+      warnings00 = bytes[5] & 0x3f;
+      decompression = bytes[6];
+   }
 
-    public String toString ()
-    {
-        return
-            "depth20: "       + depth20       + " m\n" +
-            "warnings20: "    + warnings20    + "\n" +
-            "depth40: "       + depth40       + " m\n" +
-            "warnings40: "    + warnings40    + "\n" +
-            "depth00: "       + depth00       + " m\n" +
-            "warnings00: "    + warnings00    + "\n" +
-            "decompression: " + decompression + "\n";
-    }
+   public String toString() {
+      return "depth20: " + depth20 + " m\n" + "warnings20: " + warnings20 + "\n" + "depth40: " + depth40 + " m\n"
+            + "warnings40: " + warnings40 + "\n" + "depth00: " + depth00 + " m\n" + "warnings00: " + warnings00 + "\n"
+            + "decompression: " + decompression + "\n";
+   }
 }

@@ -59,8 +59,8 @@ public class MemoMouseAdapter extends TreeSet<JDive> {
 
             dive.setDate(logEntry.entryTime);
             dive.setDepth(logEntry.maximumDepth.toString());
-            dive.setDiveNumber(new Long(index++));
-            dive.setDuration(new Double(logEntry.bottomTime));
+            dive.setDiveNumber(Long.valueOf(index++));
+            dive.setDuration(Double.valueOf(logEntry.bottomTime));
             dive.setTemperature(logEntry.waterTemperature.toString());
 
             Gas gas = AladinAdapter.getGas(logEntry.airConsumption);
@@ -128,8 +128,8 @@ public class MemoMouseAdapter extends TreeSet<JDive> {
             result = new Dive();
             resetDiveTime();
             result.setSurfaceinterval("");
-            result.setDensity(new Double(0));
-            result.setAltitude(new Double(0));
+            result.setDensity(Double.valueOf(0));
+            result.setAltitude(Double.valueOf(0));
             result.addTime(getNextDiveTime());
             result.addDepth("0");
 
@@ -168,7 +168,7 @@ public class MemoMouseAdapter extends TreeSet<JDive> {
      * @return the next dive time
      */
     private String getNextDiveTime() {
-        String result = new Double(diveTime / 60.0).toString();
+        String result = Double.valueOf(diveTime / 60.0).toString();
 
         diveTime += 20;
         return result;

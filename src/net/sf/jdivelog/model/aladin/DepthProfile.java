@@ -30,58 +30,49 @@ import java.util.List;
  * @author Andr&eacute; Schenk
  * @version $Revision: 822 $
  */
-public class DepthProfile
-{
-    public final Float startTemperature;
-    private final List<DepthProfileEntry> depthProfileEntries =
-        new ArrayList<DepthProfileEntry> ();
+public class DepthProfile {
+   public final Float startTemperature;
+   private final List<DepthProfileEntry> depthProfileEntries = new ArrayList<DepthProfileEntry>();
 
-    public DepthProfile (int [] bytes, int aladinType)
-    {
-        if ((bytes == null) || (bytes.length < 1)) {
-            throw new IllegalArgumentException
-                ("byte array for depth profile is invalid");
-        }
+   public DepthProfile(int[] bytes, int aladinType) {
+      if ((bytes == null) || (bytes.length < 1)) {
+         throw new IllegalArgumentException("byte array for depth profile is invalid");
+      }
 
-        startTemperature = new Float ((bytes [1] * 25) / 100.0);
+      startTemperature = Float.valueOf((bytes[1] * 25) / 100.0f);
 
-        // skip information for decompression
-        int index = 23;
+      // skip information for decompression
+      int index = 23;
 
-        if ((aladinType == 0xf4) || (aladinType == 0xff)) {
-            // Aladin Nitrox (not O2)
-            index += 2;
-        }
-        else if (aladinType == 0xa4) {
-            // Aladin O2
-            index += 3;
-        }
+      if ((aladinType == 0xf4) || (aladinType == 0xff)) {
+         // Aladin Nitrox (not O2)
+         index += 2;
+      }
+      else if (aladinType == 0xa4) {
+         // Aladin O2
+         index += 3;
+      }
 
-        // read body of depth profile
-        while (index < bytes.length - 7) {
-            int [] entryBuffer = new int [7];
+      // read body of depth profile
+      while (index < bytes.length - 7) {
+         int[] entryBuffer = new int[7];
 
-            System.arraycopy
-                (bytes, index, entryBuffer, 0, entryBuffer.length);
-            depthProfileEntries.add (new DepthProfileEntry (entryBuffer));
-            index += entryBuffer.length;
+         System.arraycopy(bytes, index, entryBuffer, 0, entryBuffer.length);
+         depthProfileEntries.add(new DepthProfileEntry(entryBuffer));
+         index += entryBuffer.length;
 
-            // Aladin O2 has extra one byte, which represents 02 mix %
-            if (aladinType == 0xa4) {
-                index++;
-            }
-        }
-    }
+         // Aladin O2 has extra one byte, which represents 02 mix %
+         if (aladinType == 0xa4) {
+            index++;
+         }
+      }
+   }
 
-    public List<DepthProfileEntry> getProfileEntries ()
-    {
-        return depthProfileEntries;
-    }
+   public List<DepthProfileEntry> getProfileEntries() {
+      return depthProfileEntries;
+   }
 
-    public String toString ()
-    {
-        return
-            "startTemperature: " + startTemperature + "\n" +
-            "depthProfileEntries: " + depthProfileEntries + "\n";
-    }
+   public String toString() {
+      return "startTemperature: " + startTemperature + "\n" + "depthProfileEntries: " + depthProfileEntries + "\n";
+   }
 }

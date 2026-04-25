@@ -17,7 +17,7 @@ import com.garmin.fit.Manufacturer;
 import com.garmin.fit.RecordMesg;
 import com.garmin.fit.Sport;
 import com.garmin.fit.SportMesg;
-import com.garmin.fit.SubSport;
+//import com.garmin.fit.SubSport;
 
 import net.sf.jdivelog.model.JDive;
 
@@ -80,7 +80,7 @@ public class garminFitDecode {
       // sport messages
       for(SportMesg spocht : fitMessages.getSportMesgs()) {
          Sport sp = spocht.getSport();
-         SubSport ssp = spocht.getSubSport();
+         //SubSport ssp = spocht.getSubSport();
          
          if(sp.getValue() != Sport.DIVING.getValue()) {
             return;
@@ -123,9 +123,9 @@ public class garminFitDecode {
       if(dpes.getDepthProfileEntries().size() > 0) {
          //diveToAdd.setDiveNumber(0L);
          diveToAdd.setDiveNumber(diveNo);
-         diveToAdd.setAverageDepth((double) (Math.round(dpes.avgDepth()*100)/100));
+         diveToAdd.setAverageDepth(dpes.avgDepth());
          diveToAdd.setDate(dpes.getDate());
-         diveToAdd.setDepth((double) (Math.round(dpes.maxDepth()*100)/100));
+         diveToAdd.setDepth(dpes.maxDepth());
          diveToAdd.setDuration(dpes.duration());
          diveToAdd.setTemperature(dpes.minTemperature());
          diveToAdd.setUnits(null); // BUBU

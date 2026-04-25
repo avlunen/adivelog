@@ -34,58 +34,57 @@ import java.util.Vector;
  * @version $Revision: 423 $
  */
 public abstract class LogEntry {
-    public long diveDataLength = 0;
-    public Date diveStartTime = null;
-    public short utcOffset = 0;
-    public short repNo = 0;
-    public short mbLevel = 0;
-    public short battery = 0;
-    public short alarmsDuringDive = 0;
-    public Float maximumDepth = null;
-    public int duration = 0; // in seconds
-    public Float minimumTemperature = null;
-    public Float maximumTemperature = null;
-    public int o2Percentage = 0;
-    public Float airTemperature = null;
-    public int surfaceInterval = 0;
-    public int cnsPercentage = 0;
-    public int altitudeLevel = 0;
-    public int po2Limit = 0;
-    public int depthLimit = 0;
-    public int desatBeforeDive = 0;
-    public final transient List<DepthProfileEntry> profile = new Vector<DepthProfileEntry>();
+   public long diveDataLength = 0;
+   public Date diveStartTime = null;
+   public short utcOffset = 0;
+   public short repNo = 0;
+   public short mbLevel = 0;
+   public short battery = 0;
+   public short alarmsDuringDive = 0;
+   public Float maximumDepth = null;
+   public int duration = 0; // in seconds
+   public Float minimumTemperature = null;
+   public Float maximumTemperature = null;
+   public int o2Percentage = 0;
+   public Float airTemperature = null;
+   public int surfaceInterval = 0;
+   public int cnsPercentage = 0;
+   public int altitudeLevel = 0;
+   public int po2Limit = 0;
+   public int depthLimit = 0;
+   public int desatBeforeDive = 0;
+   public final transient List<DepthProfileEntry> profile = new Vector<DepthProfileEntry>();
 
-    protected byte[] read_data = null;
-    protected int offset = 0;
-    protected int length = 0;
-    protected int index = 0;
+   protected byte[] read_data = null;
+   protected int offset = 0;
+   protected int length = 0;
+   protected int index = 0;
 
-    protected byte alarms = 0;
-    protected int depth = 0;
-    protected int depthCalibration = 0;
-    protected int temperature = 0;
-    protected int time = 4;
+   protected byte alarms = 0;
+   protected int depth = 0;
+   protected int depthCalibration = 0;
+   protected int temperature = 0;
+   protected int time = 4;
 
-    protected int available() {
-        return offset + length - index;
-    }
+   protected int available() {
+      return offset + length - index;
+   }
 
-    protected void completeSegment() {
-        profile.add(new DepthProfileEntry(alarms, depth * 2, new Float(
-                temperature * 10) / 25, time));
-        time += 4;
-    }
+   protected void completeSegment() {
+      profile.add(new DepthProfileEntry(alarms, depth * 2, Float.valueOf(temperature * 10) / 25, time));
+      time += 4;
+   }
 
-    protected Date getDateFromAladin(int halfSecondsSince2000) {
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+   protected Date getDateFromAladin(int halfSecondsSince2000) {
+      Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 
-        calendar.set(Calendar.DATE, 1);
-        calendar.set(Calendar.MONTH, 0);
-        calendar.set(Calendar.YEAR, 2000);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.add(Calendar.SECOND, halfSecondsSince2000 / 2);
-        return calendar.getTime();
-    }
+      calendar.set(Calendar.DATE, 1);
+      calendar.set(Calendar.MONTH, 0);
+      calendar.set(Calendar.YEAR, 2000);
+      calendar.set(Calendar.HOUR_OF_DAY, 0);
+      calendar.set(Calendar.MINUTE, 0);
+      calendar.set(Calendar.SECOND, 0);
+      calendar.add(Calendar.SECOND, halfSecondsSince2000 / 2);
+      return calendar.getTime();
+   }
 }

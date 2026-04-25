@@ -65,7 +65,7 @@ public class UddfUtilsConverter {
         if (str == null || "".equals(str.trim())) {
             return null;
         } else {
-            return new Double(str);
+            return Double.valueOf(str);
         }
     }    
 }

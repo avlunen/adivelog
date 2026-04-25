@@ -28,141 +28,143 @@ import java.util.Map;
 
 public class CountChartData3D {
 
-    private final List<String> rowNames = new ArrayList<String>();
+   private final List<String> rowNames = new ArrayList<String>();
 
-    private final List<String> colNames = new ArrayList<String>();
+   private final List<String> colNames = new ArrayList<String>();
 
-    private Map<Integer, Map<Integer, Double>> data = new HashMap<Integer, Map<Integer, Double>>();
+   private Map<Integer, Map<Integer, Double>> data = new HashMap<Integer, Map<Integer, Double>>();
 
-    private String name;
-    private String catLabel;
-    private String valLabel;
-    
-    public CountChartData3D(String name, String catLabel, String valLabel) {
-        this.name = name;
-        this.catLabel = catLabel;
-        this.valLabel = valLabel;
-    }
+   private String name;
+   private String catLabel;
+   private String valLabel;
 
-    public List<String> getRowNames() {
-        return rowNames;
-    }
+   public CountChartData3D(String name, String catLabel, String valLabel) {
+      this.name = name;
+      this.catLabel = catLabel;
+      this.valLabel = valLabel;
+   }
 
-    public List<String> getColNames() {
-        return colNames;
-    }
+   public List<String> getRowNames() {
+      return rowNames;
+   }
 
-    public void addRow(String row) {
-        getRowIdx(row);
-    }
+   public List<String> getColNames() {
+      return colNames;
+   }
 
-    public void addCol(String col) {
-        getColIdx(col);
-    }
+   public void addRow(String row) {
+      getRowIdx(row);
+   }
 
-    private synchronized int getRowIdx(String rowName) {
-        int idx = rowNames.indexOf(rowName);
-        if (idx < 0) {
-            rowNames.add(rowName);
-        }
-        idx = rowNames.indexOf(rowName);
-        return idx;
-    }
+   public void addCol(String col) {
+      getColIdx(col);
+   }
 
-    private synchronized int getColIdx(String colName) {
-        int idx = colNames.indexOf(colName);
-        if (idx < 0) {
-            colNames.add(colName);
-        }
-        idx = colNames.indexOf(colName);
-        return idx;
-    }
+   private synchronized int getRowIdx(String rowName) {
+      int idx = rowNames.indexOf(rowName);
+      if (idx < 0) {
+         rowNames.add(rowName);
+      }
+      idx = rowNames.indexOf(rowName);
+      return idx;
+   }
 
-    private synchronized Map<Integer, Double> getRow(int rowIdx) {
-        Integer row = new Integer(rowIdx);
-        Map<Integer, Double> r = data.get(row);
-        if (r == null) {
-            r = new HashMap<Integer, Double>();
-            data.put(row, r);
-        }
-        return r;
-    }
+   private synchronized int getColIdx(String colName) {
+      int idx = colNames.indexOf(colName);
+      if (idx < 0) {
+         colNames.add(colName);
+      }
+      idx = colNames.indexOf(colName);
+      return idx;
+   }
 
-    private synchronized void add(int rowIdx, int colIdx) {
-        Map<Integer, Double> r = getRow(rowIdx);
-        Integer col = new Integer(colIdx);
-        Double current = r.get(col);
-        if (current == null) {
-            r.put(col, new Double(1));
-        } else {
-            r.put(col, new Double(current.intValue() + 1));
-        }
-    }
+   private synchronized Map<Integer, Double> getRow(int rowIdx) {
+      Integer row = Integer.valueOf(rowIdx);
+      Map<Integer, Double> r = data.get(row);
+      if (r == null) {
+         r = new HashMap<Integer, Double>();
+         data.put(row, r);
+      }
+      return r;
+   }
 
-    private synchronized void add(int rowIdx, int colIdx, double val) {
-        Map<Integer, Double> r = getRow(rowIdx);
-        Integer col = new Integer(colIdx);
-        Double current = r.get(col);
-        if (current == null) {
-            r.put(col, new Double(val));
-        } else {
-            r.put(col, new Double(current.doubleValue() + val));
-        }
-    }
+   private synchronized void add(int rowIdx, int colIdx) {
+      Map<Integer, Double> r = getRow(rowIdx);
+      Integer col = Integer.valueOf(colIdx);
+      Double current = r.get(col);
+      if (current == null) {
+         r.put(col, Double.valueOf(1));
+      }
+      else {
+         r.put(col, Double.valueOf(current.intValue() + 1));
+      }
+   }
 
-    private int get(int rowIdx, int colIdx) {
-        Map<Integer, Double> r = getRow(rowIdx);
-        Integer col = new Integer(colIdx);
-        Double current = r.get(col);
-        if (current == null) {
-            return 0;
-        }
-        return current.intValue();
-    }
+   private synchronized void add(int rowIdx, int colIdx, double val) {
+      Map<Integer, Double> r = getRow(rowIdx);
+      Integer col = Integer.valueOf(colIdx);
+      Double current = r.get(col);
+      if (current == null) {
+         r.put(col, Double.valueOf(val));
+      }
+      else {
+         r.put(col, Double.valueOf(current.doubleValue() + val));
+      }
+   }
 
-    private double getDouble(int rowIdx, int colIdx) {
-        Map<Integer, Double> r = getRow(rowIdx);
-        Integer col = new Integer(colIdx);
-        Double current = r.get(col);
-        if (current == null) {
-            return 0;
-        }
-        return current.doubleValue();
-    }
+   private int get(int rowIdx, int colIdx) {
+      Map<Integer, Double> r = getRow(rowIdx);
+      Integer col = Integer.valueOf(colIdx);
+      Double current = r.get(col);
+      if (current == null) {
+         return 0;
+      }
+      return current.intValue();
+   }
 
-    public void add(String row, String col) {
-        int rowIdx = getRowIdx(row);
-        int colIdx = getColIdx(col);
-        add(rowIdx, colIdx);
-    }
+   private double getDouble(int rowIdx, int colIdx) {
+      Map<Integer, Double> r = getRow(rowIdx);
+      Integer col = Integer.valueOf(colIdx);
+      Double current = r.get(col);
+      if (current == null) {
+         return 0;
+      }
+      return current.doubleValue();
+   }
 
-    public void add(String row, String col, double val) {
-        int rowIdx = getRowIdx(row);
-        int colIdx = getColIdx(col);
-        add(rowIdx, colIdx, val);
-    }
+   public void add(String row, String col) {
+      int rowIdx = getRowIdx(row);
+      int colIdx = getColIdx(col);
+      add(rowIdx, colIdx);
+   }
 
-    public int get(String row, String col) {
-        int rowIdx = getRowIdx(row);
-        int colIdx = getColIdx(col);
-        return get(rowIdx, colIdx);
-    }
+   public void add(String row, String col, double val) {
+      int rowIdx = getRowIdx(row);
+      int colIdx = getColIdx(col);
+      add(rowIdx, colIdx, val);
+   }
 
-    public double getDouble(String row, String col) {
-        int rowIdx = getRowIdx(row);
-        int colIdx = getColIdx(col);
-        return getDouble(rowIdx, colIdx);
-    }
+   public int get(String row, String col) {
+      int rowIdx = getRowIdx(row);
+      int colIdx = getColIdx(col);
+      return get(rowIdx, colIdx);
+   }
 
-    public String getName() {
-        return name;
-    }
+   public double getDouble(String row, String col) {
+      int rowIdx = getRowIdx(row);
+      int colIdx = getColIdx(col);
+      return getDouble(rowIdx, colIdx);
+   }
 
-    public String getCatLabel() {
-        return catLabel;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public String getValLabel() {
-        return valLabel;
-    }
+   public String getCatLabel() {
+      return catLabel;
+   }
+
+   public String getValLabel() {
+      return valLabel;
+   }
 }

@@ -21,43 +21,40 @@
  */
 package net.sf.jdivelog.gui.statistics;
 
-import java.util.Iterator;
-
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 public class DatasetFactory {
-    
-    public static PieDataset getPieDataset(ChartData data) {
-        DefaultPieDataset dataset = new DefaultPieDataset();
-        Iterator<String> it = data.getNames().iterator();
-        while (it.hasNext()) {
-            String name = it.next();
-            dataset.setValue(name, data.getCount(name));
-        }
-        return dataset;
-    }
-    
-    public static CategoryDataset getCategoryDataset(ChartData data) {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        Iterator<String> it = data.getNames().iterator();
-        while(it.hasNext()) {
-            String name = it.next();
-            dataset.setValue(data.getCount(name), "", name);
-        }
-        return dataset;
-    }
-    
-    public static CategoryDataset getCategoryDataset(CountChartData3D data) {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for(String row : data.getRowNames()) {
-            for(String col : data.getColNames()) {
-                dataset.setValue(data.getDouble(row, col), row, col);
-            }
-        }
-        return dataset;
-    }
-    
+
+   public static PieDataset<String> getPieDataset(ChartData data) {
+      DefaultPieDataset<String> dataset = new DefaultPieDataset<String>();
+
+      for (String name : data.getNames())
+         dataset.setValue(name, data.getCount(name));
+
+      return dataset;
+   }
+
+   public static CategoryDataset getCategoryDataset(ChartData data) {
+      DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+      for (String name : data.getNames())
+         dataset.setValue(data.getCount(name), "", name);
+
+      return dataset;
+   }
+
+   public static CategoryDataset getCategoryDataset(CountChartData3D data) {
+      DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+      for (String row : data.getRowNames()) {
+         for (String col : data.getColNames()) {
+            dataset.setValue(data.getDouble(row, col), row, col);
+         }
+      }
+      return dataset;
+   }
+
 }
