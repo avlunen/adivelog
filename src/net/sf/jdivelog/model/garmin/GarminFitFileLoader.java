@@ -36,7 +36,7 @@ public class GarminFitFileLoader {
       for (int i = 0; i < files.length; i++) {
          try {
             garminFitDecode gfd = new garminFitDecode();
-            gfd.decodeFile(files[i].toString());
+            gfd.decodeFile(files[i].toString(), mainWindow.getLogBook().getNextDiveNumber());
             if(gfd.getDiveToAdd().getDiveNumber() >= 0) dives.add(gfd.getDiveToAdd());
          }
          catch (Exception e) {

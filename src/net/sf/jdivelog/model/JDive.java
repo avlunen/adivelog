@@ -125,6 +125,7 @@ public class JDive implements Comparable<JDive> {
 
     public JDive() {
         htmlExported = false;
+        equipment = new Equipment();
     }
     
     /**

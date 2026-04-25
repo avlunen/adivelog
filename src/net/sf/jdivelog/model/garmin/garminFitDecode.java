@@ -48,7 +48,7 @@ public class garminFitDecode {
    /** dive profile */
    DepthProfileEntries dpes = new DepthProfileEntries();
    
-   public void decodeFile(String fn) {
+   public void decodeFile(String fn, Long divNo) {
       try {
          FileInputStream inputStream = new FileInputStream(fn);
          FitDecoder fitDecoder = new FitDecoder();
@@ -57,7 +57,7 @@ public class garminFitDecode {
          fitMessages = fitDecoder.decode(inputStream);
 
          // fitMessages will contain all of the messages decoded from the file.
-         decodeMessages(fitMessages);
+         decodeMessages(fitMessages, divNo);
       }
       catch (java.io.IOException e) {
          LOGGER.log(Level.SEVERE, "Failed to load Garmin Fit file", e);
@@ -76,7 +76,7 @@ public class garminFitDecode {
       return;
    }
    
-   private void decodeMessages(FitMessages fitMessages) {
+   private void decodeMessages(FitMessages fitMessages, Long diveNo) {
       // sport messages
       for(SportMesg spocht : fitMessages.getSportMesgs()) {
          Sport sp = spocht.getSport();
@@ -121,7 +121,8 @@ public class garminFitDecode {
       
       // set dive data
       if(dpes.getDepthProfileEntries().size() > 0) {
-         diveToAdd.setDiveNumber(0L);
+         //diveToAdd.setDiveNumber(0L);
+         diveToAdd.setDiveNumber(diveNo);
          diveToAdd.setAverageDepth((double) (Math.round(dpes.avgDepth()*100)/100));
          diveToAdd.setDate(dpes.getDate());
          diveToAdd.setDepth((double) (Math.round(dpes.maxDepth()*100)/100));
