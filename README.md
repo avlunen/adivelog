@@ -5,9 +5,9 @@ If you just want to run the app, download 'adivelog.jar' to your computer and do
 
 This is in an early stage, and I am not sure how much time I will have to work on this. On the other hand, the main motivation to create this spin-off was that I wanted a dive log app that is less over-blown than others, such as Subsurface, but something nice, small and simple.
 
-In this initial release (call it an alpha version), I have fixed some bugs of JDivelog. I also removed the dive planner/deco module from it; personally, I find "hobby" deco planners questionable, and there are many others out there. Instead, I have replaced it with a mapping feature (although the code is still here, but will be removed in the future); which means you can now create a map with your dive sites, provided you have added coordinates to your list of dive sites.
+In this initial release I have fixed some bugs of JDivelog. I also removed the dive planner/deco module from it; personally, I find "hobby" deco planners questionable, and there are many others out there. Instead, I have replaced it with a mapping feature; which means you can now create a map with your dive sites, provided you have added coordinates to your list of dive sites.
 
-The feature to download data from dive computers is still available, but I reckon it is broken at this point. I may or may not fix this in the future...
+The code for the feature to download data from dive computers is still in the code repository, but I have removed the buttons from the app for now. I need to fix the serial communication first before I can bring these back.
 
 The software dependencies are as follows (included in this code repository):
 
