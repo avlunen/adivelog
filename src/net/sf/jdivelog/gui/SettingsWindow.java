@@ -112,7 +112,7 @@ public class SettingsWindow extends JDialog implements TreeSelectionListener, Ac
          appendNode(export, "configuration.export.detail", new ExportSettingsDetailPanel(mainWindow));
          appendNode(export, "configuration.export.pictures", new ExportSettingsPicturesPanel(mainWindow));
          appendNode(export, "configuration.export.layout", new ExportSettingsLayoutPanel(mainWindow));
-         //appendNode(rootNode, "configuration.divecomputer", new ComputerSettingsPanel(mainWindow));
+         //appendNode(rootNode, "configuration.divecomputer", new ComputerSettingsPanel(mainWindow)); // BUBU
          appendNode(rootNode, "configuration.statistics", new StatisticSettingsPanel(mainWindow));
          appendNode(rootNode, "configuration.profile", new SettingsProfilePanel(mainWindow));
          appendNode(rootNode, "configuration.slideshow", new SlideshowSettingsPanel(mainWindow));

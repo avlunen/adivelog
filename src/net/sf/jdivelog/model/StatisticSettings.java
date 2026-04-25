@@ -21,121 +21,114 @@
  */
 package net.sf.jdivelog.model;
 
-
 public class StatisticSettings {
+   private ChartSettings buddyStatistic;
+   private ChartSettings divePlaceStatistic;
+   private ChartSettings countryStatistic;
+   private ChartSettings diveTypeStatistic;
+   private ChartSettings diveActivityStatistic;
+   private ChartSettings watersStatistic;
 
-    private ChartSettings buddyStatistic;
-    
-    private ChartSettings divePlaceStatistic;
-    
-    private ChartSettings countryStatistic;
-    
-    private ChartSettings diveTypeStatistic;
-    
-    private ChartSettings diveActivityStatistic;
-    
-    private ChartSettings watersStatistic;
+   public String toString() {
+      StringBuffer sb = new StringBuffer();
+      sb.append("<StatisticSettings>");
+      sb.append("<buddyStatistic>");
+      sb.append(getBuddyStatistic());
+      sb.append("</buddyStatistic>");
+      sb.append("<divePlaceStatistic>");
+      sb.append(getDivePlaceStatistic());
+      sb.append("</divePlaceStatistic>");
+      sb.append("<countryStatistic>");
+      sb.append(getCountryStatistic());
+      sb.append("</countryStatistic>");
+      sb.append("<diveTypeStatistic>");
+      sb.append(getDiveTypeStatistic());
+      sb.append("</diveTypeStatistic>");
+      sb.append("<diveActivityStatistic>");
+      sb.append(getDiveActivityStatistic());
+      sb.append("</diveActivityStatistic>");
+      sb.append("<watersStatistic>");
+      sb.append(watersStatistic);
+      sb.append("</watersStatistic>");
+      sb.append("</StatisticSettings>");
+      return sb.toString();
+   }
 
-    public String toString() {
-        StringBuffer sb = new StringBuffer();
-        sb.append("<StatisticSettings>");
-        sb.append("<buddyStatistic>");
-        sb.append(getBuddyStatistic());
-        sb.append("</buddyStatistic>");
-        sb.append("<divePlaceStatistic>");
-        sb.append(getDivePlaceStatistic());
-        sb.append("</divePlaceStatistic>");
-        sb.append("<countryStatistic>");
-        sb.append(getCountryStatistic());
-        sb.append("</countryStatistic>");
-        sb.append("<diveTypeStatistic>");
-        sb.append(getDiveTypeStatistic());
-        sb.append("</diveTypeStatistic>");
-        sb.append("<diveActivityStatistic>");
-        sb.append(getDiveActivityStatistic());
-        sb.append("</diveActivityStatistic>");
-        sb.append("<watersStatistic>");
-        sb.append(watersStatistic);
-        sb.append("</watersStatistic>");
-        sb.append("</StatisticSettings>");
-        return sb.toString();
-    }
+   public ChartSettings getBuddyStatistic() {
+      if (buddyStatistic == null) {
+         buddyStatistic = new ChartSettings();
+      }
+      return buddyStatistic;
+   }
 
-    public ChartSettings getBuddyStatistic() {
-        if (buddyStatistic == null) {
-            buddyStatistic = new ChartSettings();
-        }
-        return buddyStatistic;
-    }
+   public void setBuddyStatistic(ChartSettings buddyStatistic) {
+      this.buddyStatistic = buddyStatistic;
+   }
 
-    public void setBuddyStatistic(ChartSettings buddyStatistic) {
-        this.buddyStatistic = buddyStatistic;
-    }
+   public ChartSettings getCountryStatistic() {
+      if (countryStatistic == null) {
+         countryStatistic = new ChartSettings();
+      }
+      return countryStatistic;
+   }
 
-    public ChartSettings getCountryStatistic() {
-        if (countryStatistic == null) {
-            countryStatistic = new ChartSettings();
-        }
-        return countryStatistic;
-    }
+   public void setCountryStatistic(ChartSettings countryStatistic) {
+      this.countryStatistic = countryStatistic;
+   }
 
-    public void setCountryStatistic(ChartSettings countryStatistic) {
-        this.countryStatistic = countryStatistic;
-    }
+   public ChartSettings getDiveActivityStatistic() {
+      if (diveActivityStatistic == null) {
+         diveActivityStatistic = new ChartSettings();
+      }
+      return diveActivityStatistic;
+   }
 
-    public ChartSettings getDiveActivityStatistic() {
-        if (diveActivityStatistic == null) {
-            diveActivityStatistic = new ChartSettings();
-        }
-        return diveActivityStatistic;
-    }
+   public void setDiveActivityStatistic(ChartSettings diveActivityStatistic) {
+      this.diveActivityStatistic = diveActivityStatistic;
+   }
 
-    public void setDiveActivityStatistic(ChartSettings diveActivityStatistic) {
-        this.diveActivityStatistic = diveActivityStatistic;
-    }
-    
-    public ChartSettings getWatersStatistic() {
-        if (watersStatistic == null) {
-            watersStatistic = new ChartSettings();
-        }
-        return watersStatistic;
-    }
-    
-    public void setWatersStatistic(ChartSettings watersStatistic) {
-        this.watersStatistic = watersStatistic;
-    }
+   public ChartSettings getWatersStatistic() {
+      if (watersStatistic == null) {
+         watersStatistic = new ChartSettings();
+      }
+      return watersStatistic;
+   }
 
-    public ChartSettings getDivePlaceStatistic() {
-        if (divePlaceStatistic == null) {
-            divePlaceStatistic = new ChartSettings();
-        }
-        return divePlaceStatistic;
-    }
+   public void setWatersStatistic(ChartSettings watersStatistic) {
+      this.watersStatistic = watersStatistic;
+   }
 
-    public void setDivePlaceStatistic(ChartSettings divePlaceStatistic) {
-        this.divePlaceStatistic = divePlaceStatistic;
-    }
+   public ChartSettings getDivePlaceStatistic() {
+      if (divePlaceStatistic == null) {
+         divePlaceStatistic = new ChartSettings();
+      }
+      return divePlaceStatistic;
+   }
 
-    public ChartSettings getDiveTypeStatistic() {
-        if (diveTypeStatistic == null) {
-            diveTypeStatistic = new ChartSettings();
-        }
-        return diveTypeStatistic;
-    }
+   public void setDivePlaceStatistic(ChartSettings divePlaceStatistic) {
+      this.divePlaceStatistic = divePlaceStatistic;
+   }
 
-    public void setDiveTypeStatistic(ChartSettings diveTypeStatistic) {
-        this.diveTypeStatistic = diveTypeStatistic;
-    }
-    
-    public StatisticSettings deepClone() {
-        StatisticSettings copy = new StatisticSettings();
-        copy.buddyStatistic = buddyStatistic.deepClone();
-        copy.divePlaceStatistic = divePlaceStatistic.deepClone();
-        copy.countryStatistic = countryStatistic.deepClone();
-        copy.diveTypeStatistic = diveTypeStatistic.deepClone();
-        copy.diveActivityStatistic = diveActivityStatistic.deepClone();
-        copy.watersStatistic = watersStatistic.deepClone();
-        return copy;
-    }
-    
+   public ChartSettings getDiveTypeStatistic() {
+      if (diveTypeStatistic == null) {
+         diveTypeStatistic = new ChartSettings();
+      }
+      return diveTypeStatistic;
+   }
+
+   public void setDiveTypeStatistic(ChartSettings diveTypeStatistic) {
+      this.diveTypeStatistic = diveTypeStatistic;
+   }
+
+   public StatisticSettings deepClone() {
+      StatisticSettings copy = new StatisticSettings();
+      copy.buddyStatistic = buddyStatistic.deepClone();
+      copy.divePlaceStatistic = divePlaceStatistic.deepClone();
+      copy.countryStatistic = countryStatistic.deepClone();
+      copy.diveTypeStatistic = diveTypeStatistic.deepClone();
+      copy.diveActivityStatistic = diveActivityStatistic.deepClone();
+      copy.watersStatistic = watersStatistic.deepClone();
+      return copy;
+   }
+
 }

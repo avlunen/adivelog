@@ -23,10 +23,8 @@ package net.sf.jdivelog.model;
 
 import net.sf.jdivelog.gui.StatisticPanel;
 
-public class ChartSettings {
-    
+public class ChartSettings {  
     private String type;
-    
     private String orientation;
     
     public ChartSettings() {
