@@ -1,5 +1,12 @@
 package net.sf.jdivelog.model.garmin;
 
+/**
+ * Class to hold a Garmin device information and settings
+ * 
+ * @author Alexander von L&uuml;nen
+ * @version 0.7
+ * @since 25 Apr 2026
+ */
 public class GarminDevice {
    private String m_manufacturer;
    private Integer m_productNumber;
@@ -8,6 +15,7 @@ public class GarminDevice {
    private Float m_softwareVersion;
    private String m_batteryStatus;
    private Integer m_batteryLevel;
+   private Integer m_utc_offset = 0;
    
    public Integer getM_productNumber() {
       return m_productNumber;
@@ -50,5 +58,11 @@ public class GarminDevice {
    }
    public void setM_manufacturer(String m_manufacturer) {
       this.m_manufacturer = m_manufacturer;
+   }
+   public Integer getM_utc_offset() {
+      return m_utc_offset;
+   }
+   public void setM_utc_offset(Integer m_utc_offset) {
+      this.m_utc_offset = m_utc_offset;
    }
 }

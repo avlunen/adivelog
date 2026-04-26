@@ -34,65 +34,66 @@ import java.util.List;
  */
 public class LogEntry {
 
-	public enum GasType {
-		AIR(0), NITROX(1), GAUGE(2);
-		private final int id;
+   public enum GasType {
+      AIR(0), NITROX(1), GAUGE(2);
 
-		private GasType(int id) {
-			this.id = id;
-		}
-		
-		public static GasType fromValue(int id) {
-			GasType gasType = null;
-			for (GasType type : GasType.values()) {
-				if (type.id == id) {
-					gasType = type;
-					break;
-				}
-			}
-			return gasType;
-		}
-	}
+      private final int id;
 
-	public final int maxDepth;
+      private GasType(int id) {
+         this.id = id;
+      }
 
-	public final int diveTime;
+      public static GasType fromValue(int id) {
+         GasType gasType = null;
+         for (GasType type : GasType.values()) {
+            if (type.id == id) {
+               gasType = type;
+               break;
+            }
+         }
+         return gasType;
+      }
+   }
 
-	public final Date date;
-	
-	public final GasType gasType;
-	
-    public final int o2percent1;
-    public final int o2percent2;
-    public final int o2percent3;
+   public final int maxDepth;
 
-	private List<DepthProfileEntry> profile = new LinkedList<DepthProfileEntry>();
+   public final int diveTime;
 
-	public LogEntry(DiveProfileHeader diveProfileHeader) {
-		maxDepth = diveProfileHeader.maxDepth;
-		diveTime = diveProfileHeader.diveTime;
-		gasType = GasType.fromValue(diveProfileHeader.gasModel);
-		o2percent1 = diveProfileHeader.o2percent1;
-		o2percent2 = diveProfileHeader.o2percent2;
-		o2percent3 = diveProfileHeader.o2percent3;
+   public final Date date;
 
-		Calendar date = Calendar.getInstance();
+   public final GasType gasType;
 
-		date.set(Calendar.YEAR, diveProfileHeader.year);
-		date.set(Calendar.MONTH, diveProfileHeader.month);
-		date.set(Calendar.DAY_OF_MONTH, diveProfileHeader.day);
-		date.set(Calendar.HOUR_OF_DAY, diveProfileHeader.hour);
-		date.set(Calendar.MINUTE, diveProfileHeader.minute);
-		date.set(Calendar.SECOND, 0);
-		date.set(Calendar.MILLISECOND, 0);
-		this.date = date.getTime();
-	}
+   public final int o2percent1;
+   public final int o2percent2;
+   public final int o2percent3;
 
-	public List<DepthProfileEntry> getProfile() {
-		return profile;
-	}
+   private List<DepthProfileEntry> profile = new LinkedList<DepthProfileEntry>();
 
-	public void setProfile(List<DepthProfileEntry> profile) {
-		this.profile = profile;
-	}
+   public LogEntry(DiveProfileHeader diveProfileHeader) {
+      maxDepth = diveProfileHeader.maxDepth;
+      diveTime = diveProfileHeader.diveTime;
+      gasType = GasType.fromValue(diveProfileHeader.gasModel);
+      o2percent1 = diveProfileHeader.o2percent1;
+      o2percent2 = diveProfileHeader.o2percent2;
+      o2percent3 = diveProfileHeader.o2percent3;
+
+      Calendar date = Calendar.getInstance();
+
+      date.set(Calendar.YEAR, diveProfileHeader.year);
+      date.set(Calendar.MONTH, diveProfileHeader.month);
+      date.set(Calendar.DAY_OF_MONTH, diveProfileHeader.day);
+      date.set(Calendar.HOUR_OF_DAY, diveProfileHeader.hour);
+      date.set(Calendar.MINUTE, diveProfileHeader.minute);
+      date.set(Calendar.SECOND, 0);
+      date.set(Calendar.MILLISECOND, 0);
+      this.date = date.getTime();
+   }
+
+   public List<DepthProfileEntry> getProfile() {
+      return profile;
+   }
+
+   public void setProfile(List<DepthProfileEntry> profile) {
+      this.profile = profile;
+   }
 }

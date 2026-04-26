@@ -125,6 +125,12 @@ public class Dive implements Comparable<Dive> {
       addSample(s);
    }
 
+   public void addTime(Long value) {
+      Time t = new Time();
+      t.setValue(Double.valueOf(value));
+      addSample(t);
+   }
+
    public void addTime(String value) {
       Time t = new Time();
       t.setValue(Double.valueOf(value));

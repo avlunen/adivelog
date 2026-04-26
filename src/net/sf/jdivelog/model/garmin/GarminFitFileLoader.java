@@ -3,6 +3,7 @@ package net.sf.jdivelog.model.garmin;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,23 +30,25 @@ public class GarminFitFileLoader {
    /** logger instance */
    private static final Logger LOGGER = Logger.getLogger(GarminFitFileLoader.class.getName());
    /** list of imported dives */
-   private ArrayList<JDive> dives = new ArrayList<JDive>();
+   private List<DepthProfileEntries> dives = new ArrayList<DepthProfileEntries>();
 
    public GarminFitFileLoader(MainWindow mainWindow, File[] files) throws FileNotFoundException {
 
       for (int i = 0; i < files.length; i++) {
          try {
             garminFitDecode gfd = new garminFitDecode();
-            gfd.decodeFile(files[i].toString(), mainWindow.getLogBook().getNextDiveNumber());
-            if(gfd.getDiveToAdd().getDiveNumber() >= 0) dives.add(gfd.getDiveToAdd());
+            gfd.decodeFile(files[i].toString());
+            //if(gfd.getDiveToAdd().getDiveNumber() >= 0) dives.add(gfd.getDiveToAdd());
+            dives.add(gfd.getDpes());
          }
          catch (Exception e) {
             LOGGER.log(Level.SEVERE, "failed to load garmin fit file", e);
          }
       }
+      GarminFitAdapter gfa = new GarminFitAdapter(dives, mainWindow.getLogBook().getLastDive().getDiveNumber());
 
       // open the diveImportDataTrak window to mark the dives for import
-      DiveImportWindow diw = new DiveImportWindow(mainWindow, dives, Messages.getString("diveimportgarmin")); // BUBU
+      DiveImportWindow diw = new DiveImportWindow(mainWindow, new ArrayList<JDive>(gfa), Messages.getString("diveimportgarmin"));
 
       diw.setVisible(true);
    }

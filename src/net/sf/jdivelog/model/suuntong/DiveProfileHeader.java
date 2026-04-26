@@ -30,98 +30,101 @@ import net.sf.jdivelog.util.DiveParser;
  * @version $Revision: 1.5 $
  */
 public class DiveProfileHeader {
-    public static final int D6_SIZE = 0x4B;
-    public static final int VYPER_AIR_SIZE = 0x4E;
+   public static final int D6_SIZE = 0x4B;
+   public static final int VYPER_AIR_SIZE = 0x4E;
 
-    public final int prevDiveOffset;
+   public final int prevDiveOffset;
 
-    public final int nextDiveOffset;
+   public final int nextDiveOffset;
 
-    public final int maxDepth;
+   public final int maxDepth;
 
-    public final int diveTime;
+   public final int diveTime;
 
-    public final int unknown;
+   public final int unknown;
 
-    public final int hour;
+   public final int hour;
 
-    public final int minute;
+   public final int minute;
 
-    public final int second;
+   public final int second;
 
-    public final int year;
+   public final int year;
 
-    public final int month;
+   public final int month;
 
-    public final int day;
+   public final int day;
 
-    public final int sampleRecordingInterval;
+   public final int sampleRecordingInterval;
 
-    public final int gasModel;
-    
-    public final int o2percent1;
-    public final int o2percent2;
-    public final int o2percent3;
+   public final int gasModel;
 
-    public final int repetetiveDiveNumber;
+   public final int o2percent1;
+   public final int o2percent2;
+   public final int o2percent3;
 
-    public final int temperatureRecordingInterval;
+   public final int repetetiveDiveNumber;
 
-    public final int offsetToFirstMarker;
+   public final int temperatureRecordingInterval;
 
-    private final int size;
+   public final int offsetToFirstMarker;
 
-    public DiveProfileHeader(byte[] bytes) {
-        if ((bytes == null) || (bytes.length < D6_SIZE)) {
-            throw new IllegalArgumentException("parameter \"bytes\" too short");
-        }
+   private final int size;
 
-        prevDiveOffset = DiveParser.readUInt(bytes, 0x00);
-        nextDiveOffset = DiveParser.readUInt(bytes, 0x02);
-        maxDepth = DiveParser.readUInt(bytes, 0x0D);
-        diveTime = DiveParser.readUInt(bytes, 0x0F);
-        unknown = DiveParser.readUInt(bytes, 0x11);
-        hour = DiveParser.readUShort(bytes, 0x15);
-        minute = DiveParser.readUShort(bytes, 0x16);
-        second = DiveParser.readUShort(bytes, 0x17);
-        year = DiveParser.readUInt(bytes, 0x18);
-        month = DiveParser.readUShort(bytes, 0x1A) - 1;
-        day = DiveParser.readUShort(bytes, 0x1B);
-        sampleRecordingInterval = DiveParser.readUShort(bytes, 0x1C);
-        gasModel = DiveParser.readUShort(bytes, 0x1D);
-        repetetiveDiveNumber = DiveParser.readUShort(bytes, 0x1E);
-        if(gasModel == 1) { //Nitrox mode
-        	o2percent1 = DiveParser.readUShort(bytes, 0x25);
-        	o2percent2 = DiveParser.readUShort(bytes, 0x26);
-        	o2percent3 = DiveParser.readUShort(bytes, 0x27);
-        } else {
-        	o2percent1 = 0;
-        	o2percent2 = 0;
-        	o2percent3 = 0;
-        }
-        if (hasTankPressureInformation()) {
-            temperatureRecordingInterval = DiveParser.readUShort(bytes, 0x47);
-        } else {
-            temperatureRecordingInterval = DiveParser.readUShort(bytes, 0x44);
-        }
-        if (hasTankPressureInformation()) {
-            offsetToFirstMarker = DiveParser.readUInt(bytes, 0x4C);
-        } else {
-            offsetToFirstMarker = DiveParser.readUInt(bytes, 0x49);
-        }
-        size = hasTankPressureInformation() ? VYPER_AIR_SIZE : D6_SIZE;
-    }
+   public DiveProfileHeader(byte[] bytes) {
+      if ((bytes == null) || (bytes.length < D6_SIZE)) {
+         throw new IllegalArgumentException("parameter \"bytes\" too short");
+      }
 
-    /**
-     * Get the size of this dive profile header.
-     * 
-     * @return dive profile header size
-     */
-    public int getSize() {
-        return size;
-    }
+      prevDiveOffset = DiveParser.readUInt(bytes, 0x00);
+      nextDiveOffset = DiveParser.readUInt(bytes, 0x02);
+      maxDepth = DiveParser.readUInt(bytes, 0x0D);
+      diveTime = DiveParser.readUInt(bytes, 0x0F);
+      unknown = DiveParser.readUInt(bytes, 0x11);
+      hour = DiveParser.readUShort(bytes, 0x15);
+      minute = DiveParser.readUShort(bytes, 0x16);
+      second = DiveParser.readUShort(bytes, 0x17);
+      year = DiveParser.readUInt(bytes, 0x18);
+      month = DiveParser.readUShort(bytes, 0x1A) - 1;
+      day = DiveParser.readUShort(bytes, 0x1B);
+      sampleRecordingInterval = DiveParser.readUShort(bytes, 0x1C);
+      gasModel = DiveParser.readUShort(bytes, 0x1D);
+      repetetiveDiveNumber = DiveParser.readUShort(bytes, 0x1E);
+      if (gasModel == 1) { // Nitrox mode
+         o2percent1 = DiveParser.readUShort(bytes, 0x25);
+         o2percent2 = DiveParser.readUShort(bytes, 0x26);
+         o2percent3 = DiveParser.readUShort(bytes, 0x27);
+      }
+      else {
+         o2percent1 = 0;
+         o2percent2 = 0;
+         o2percent3 = 0;
+      }
+      if (hasTankPressureInformation()) {
+         temperatureRecordingInterval = DiveParser.readUShort(bytes, 0x47);
+      }
+      else {
+         temperatureRecordingInterval = DiveParser.readUShort(bytes, 0x44);
+      }
+      if (hasTankPressureInformation()) {
+         offsetToFirstMarker = DiveParser.readUInt(bytes, 0x4C);
+      }
+      else {
+         offsetToFirstMarker = DiveParser.readUInt(bytes, 0x49);
+      }
+      size = hasTankPressureInformation() ? VYPER_AIR_SIZE : D6_SIZE;
+   }
 
-    public boolean hasTankPressureInformation() {
-        return unknown != 0xFFFF;
-    }
+   /**
+    * Get the size of this dive profile header.
+    * 
+    * @return dive profile header size
+    */
+   public int getSize() {
+      return size;
+   }
+
+   public boolean hasTankPressureInformation() {
+      return unknown != 0xFFFF;
+   }
 }

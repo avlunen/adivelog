@@ -2,6 +2,13 @@ package net.sf.jdivelog.model.garmin;
 
 import java.time.Instant;
 
+/**
+ * Class for holding a single data point in the diveprofile
+ * 
+ * @author Alexander von Lünen
+ * @version 1.0
+ * @since 23 Apr 2026
+ */
 public class depthProfileEntry {
    private Instant m_timestamp;
    private Long m_pressure;

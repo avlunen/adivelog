@@ -14,6 +14,9 @@ import java.util.LongSummaryStatistics;
  * @since 23 Apr 2026
  */
 public class DepthProfileEntries {  
+   private String m_unit_system = "metric";
+   private Float m_water_density = 1000.0f;
+   
    /** Dive profile */
    private List<depthProfileEntry> depthProfileEntries =
          new ArrayList<depthProfileEntry> ();
@@ -47,6 +50,10 @@ public class DepthProfileEntries {
       return depthProfileEntries.stream().mapToDouble(depthProfileEntry::getM_depth).average().getAsDouble();
    }
    
+   /**
+    * Function to retrieve the lowest temperature of the dive
+    * @return double
+    */
    public double minTemperature() {
       return depthProfileEntries.stream().mapToDouble(depthProfileEntry::getM_temperature).min().getAsDouble();
    }
@@ -68,5 +75,21 @@ public class DepthProfileEntries {
     */
    public Date getDate() {
       return new Date((depthProfileEntries.stream().mapToLong(depthProfileEntries -> depthProfileEntries.getM_timestamp().getEpochSecond()).min().getAsLong()*1000));
+   }
+
+   public Float getM_water_density() {
+      return m_water_density;
+   }
+
+   public void setM_water_density(Float m_water_density) {
+      this.m_water_density = m_water_density;
+   }
+
+   public String getM_unit_system() {
+      return m_unit_system;
+   }
+
+   public void setM_unit_system(String m_unit_system) {
+      this.m_unit_system = m_unit_system;
    }
 }

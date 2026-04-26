@@ -8,6 +8,8 @@
 package net.sf.jdivelog.model.garmin;
 
 import com.garmin.fit.DeviceInfoMesg;
+import com.garmin.fit.DeviceSettingsMesg;
+import com.garmin.fit.DiveSettingsMesg;
 import com.garmin.fit.FileIdMesg;
 import com.garmin.fit.FitDecoder;
 import com.garmin.fit.FitMessages;
@@ -36,19 +38,21 @@ import java.util.logging.Logger;
  * @author Alexander von Lünen
  * @version 1.0
  * @since 23 Apr 2026
+ * @version 1.1
+ * @since 25 Apr 2026
  */
 
 public class garminFitDecode {
    /** logger instance */
    private static final Logger LOGGER = Logger.getLogger(GarminFitFileLoader.class.getName());
-   /** list of imported dives */
-   private JDive diveToAdd = new JDive();
    /** Device information */
    GarminDevice myDevice = new GarminDevice();
+   /** Dive settings */
+   GarminDiveSettings dvs = new GarminDiveSettings();
    /** dive profile */
    DepthProfileEntries dpes = new DepthProfileEntries();
    
-   public void decodeFile(String fn, Long divNo) {
+   public void decodeFile(String fn) {
       try {
          FileInputStream inputStream = new FileInputStream(fn);
          FitDecoder fitDecoder = new FitDecoder();
@@ -57,7 +61,7 @@ public class garminFitDecode {
          fitMessages = fitDecoder.decode(inputStream);
 
          // fitMessages will contain all of the messages decoded from the file.
-         decodeMessages(fitMessages, divNo);
+         decodeMessages(fitMessages);
       }
       catch (java.io.IOException e) {
          LOGGER.log(Level.SEVERE, "Failed to load Garmin Fit file", e);
@@ -76,7 +80,7 @@ public class garminFitDecode {
       return;
    }
    
-   private void decodeMessages(FitMessages fitMessages, Long diveNo) {
+   private void decodeMessages(FitMessages fitMessages) {
       // sport messages
       for(SportMesg spocht : fitMessages.getSportMesgs()) {
          Sport sp = spocht.getSport();
@@ -107,7 +111,18 @@ public class garminFitDecode {
             }
          }
          
-         // TODO check units (metric etc?)
+         // device settings
+         for(DeviceSettingsMesg ds : fitMessages.getDeviceSettingsMesgs()) {
+            myDevice.setM_utc_offset(ds.getUtcOffset().intValue());
+         }
+         
+         // dive settings
+         for(DiveSettingsMesg dv : fitMessages.getDiveSettingsMesgs()) {
+            dvs.setM_water_density(dv.getWaterDensity());
+            dpes.setM_water_density(dv.getWaterDensity());
+         }
+         
+         // TODO the Garmin Fit SDK seems to always return metric, double-check
          // Garmin Records       
          for(RecordMesg rec : fitMessages.getRecordMesgs()) {
             depthProfileEntry dpe = new depthProfileEntry();
@@ -117,27 +132,32 @@ public class garminFitDecode {
             dpe.setM_temperature(rec.getTemperature());
             dpes.addEntry(dpe);
          }
-      }
+      }      
+   }
+   
+   public DepthProfileEntries getDpes() {
+      return dpes;
+   }
+
+   public GarminDevice getMyDevice() {
+      return myDevice;
+   }
+
+   public JDive getDiveToAdd(Long diveNo) {
+      JDive diveToAdd = new JDive();
       
       // set dive data
       if(dpes.getDepthProfileEntries().size() > 0) {
-         //diveToAdd.setDiveNumber(0L);
          diveToAdd.setDiveNumber(diveNo);
          diveToAdd.setAverageDepth(dpes.avgDepth());
          diveToAdd.setDate(dpes.getDate());
          diveToAdd.setDepth(dpes.maxDepth());
          diveToAdd.setDuration(dpes.duration());
          diveToAdd.setTemperature(dpes.minTemperature());
-         diveToAdd.setUnits(null); // BUBU
+         diveToAdd.setUnits("metric");
       }
       else diveToAdd.setDiveNumber(-1L);
-   }
-   
-   public GarminDevice getMyDevice() {
-      return myDevice;
-   }
 
-   public JDive getDiveToAdd() {
       return diveToAdd;
    }
 
