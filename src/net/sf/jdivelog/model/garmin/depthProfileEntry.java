@@ -15,6 +15,12 @@ public class depthProfileEntry {
    private Double m_altitude;
    private Float m_depth;
    private Byte m_temperature;
+   private Float m_cns_load;
+   private Float m_n2_load;
+   private Float m_po2;
+   private Long m_ndl;
+   private Long m_tts;
+   private Integer alarm;
    
    
    public Instant getM_timestamp() {
@@ -46,6 +52,42 @@ public class depthProfileEntry {
    }
    public void setM_temperature(Byte m_temperature) {
       this.m_temperature = m_temperature;
+   }
+   public Float getM_cns_load() {
+      return m_cns_load;
+   }
+   public void setM_cns_load(Float m_cns_load) {
+      this.m_cns_load = m_cns_load;
+   }
+   public Float getM_n2_load() {
+      return m_n2_load;
+   }
+   public void setM_n2_load(Float m_n2_load) {
+      this.m_n2_load = m_n2_load;
+   }
+   public Float getM_po2() {
+      return m_po2;
+   }
+   public void setM_po2(Float m_po2) {
+      this.m_po2 = m_po2;
+   }
+   public Long getM_ndl() {
+      return m_ndl;
+   }
+   public void setM_ndl(Long m_ndl) {
+      this.m_ndl = m_ndl;
+   }
+   public Long getM_tts() {
+      return m_tts;
+   }
+   public void setM_tts(Long m_tts) {
+      this.m_tts = m_tts;
+   }
+   public Integer getAlarm() {
+      return alarm;
+   }
+   public void setAlarm(Integer alarm) {
+      this.alarm = alarm;
    }
 
 }

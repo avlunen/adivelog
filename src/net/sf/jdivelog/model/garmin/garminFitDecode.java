@@ -9,7 +9,10 @@ package net.sf.jdivelog.model.garmin;
 
 import com.garmin.fit.DeviceInfoMesg;
 import com.garmin.fit.DeviceSettingsMesg;
+import com.garmin.fit.DiveGasMesg;
 import com.garmin.fit.DiveSettingsMesg;
+import com.garmin.fit.Event;
+import com.garmin.fit.EventMesg;
 import com.garmin.fit.FileIdMesg;
 import com.garmin.fit.FitDecoder;
 import com.garmin.fit.FitMessages;
@@ -19,7 +22,7 @@ import com.garmin.fit.Manufacturer;
 import com.garmin.fit.RecordMesg;
 import com.garmin.fit.Sport;
 import com.garmin.fit.SportMesg;
-//import com.garmin.fit.SubSport;
+import com.garmin.fit.SubSport;
 
 import net.sf.jdivelog.model.JDive;
 
@@ -84,11 +87,13 @@ public class garminFitDecode {
       // sport messages
       for(SportMesg spocht : fitMessages.getSportMesgs()) {
          Sport sp = spocht.getSport();
-         //SubSport ssp = spocht.getSubSport();
+         SubSport ssp = spocht.getSubSport();
          
          if(sp.getValue() != Sport.DIVING.getValue()) {
             return;
          }
+         
+         dpes.setM_divetype(SubSport.getStringFromValue(ssp));
       }
 
       if (!fitMessages.getFileIdMesgs().isEmpty()) {     
@@ -118,8 +123,15 @@ public class garminFitDecode {
          
          // dive settings
          for(DiveSettingsMesg dv : fitMessages.getDiveSettingsMesgs()) {
-            dvs.setM_water_density(dv.getWaterDensity());
-            dpes.setM_water_density(dv.getWaterDensity());
+            dvs.setM_water_density(dv.getWaterDensity().doubleValue());
+            dpes.setM_water_density(dv.getWaterDensity().doubleValue());
+         }
+         
+         // gas settings
+         for(DiveGasMesg dg : fitMessages.getDiveGasMesgs()) {
+            dpes.getM_start_gas().setHelium(Double.valueOf(dg.getHeliumContent()/100.0));
+            dpes.getM_start_gas().setOxygen(Double.valueOf(dg.getOxygenContent()/100.0));
+            dpes.getM_start_gas().setNitrogen(Double.valueOf((100-dg.getHeliumContent()-dg.getOxygenContent())/100.0));
          }
          
          // TODO the Garmin Fit SDK seems to always return metric, double-check
@@ -130,7 +142,19 @@ public class garminFitDecode {
             dpe.setM_pressure(rec.getAbsolutePressure());
             dpe.setM_depth(rec.getDepth());
             dpe.setM_temperature(rec.getTemperature());
+            dpe.setM_cns_load(rec.getCnsLoad().floatValue());
+            dpe.setM_n2_load(rec.getN2Load().floatValue());
+            dpe.setM_po2(rec.getPo2());
+            dpe.setM_ndl(rec.getNdlTime());
+            dpe.setM_tts(rec.getTimeToSurface());
             dpes.addEntry(dpe);
+         }
+         
+         // dive events
+         for(EventMesg em : fitMessages.getEventMesgs()) {
+            if(em.getEvent() != Event.DIVE_ALERT) {
+               dpes.addAlert(em.getTimestamp().getInstant(), Integer.valueOf(em.getEvent().getValue()));
+            }
          }
       }      
    }

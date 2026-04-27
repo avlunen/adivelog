@@ -81,6 +81,12 @@ public class Dive implements Comparable<Dive> {
    public void setDeltaMode() {
       mode = MODE_DELTA;
    }
+   
+   public void addCns(Double value) {
+      Cns cns = new Cns();
+      cns.setValue(value);
+      addSample(cns);
+   }   
 
    public void addCns(String value) {
       Cns cns = new Cns();
@@ -140,6 +146,20 @@ public class Dive implements Comparable<Dive> {
    public void addDepth(String depth) {
       Depth d = new Depth();
       d.setValue(Double.valueOf(depth));
+      addSample(d);
+   }
+
+   public void addDepth(Double depth) {
+      Depth d = new Depth();
+      d.setValue(depth);
+      addSample(d);
+   }
+
+   public void addDecoInfo(Double depth, Double tfs, Double tts) {
+      DecoInfo d = new DecoInfo();
+      d.setValue(depth);
+      d.setTfs(tfs);
+      d.setTts(tts);
       addSample(d);
    }
 

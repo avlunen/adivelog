@@ -46,7 +46,7 @@ public interface Sample {
     /** Sample type <b>TEMPERATURE</b>. Specifies the temperature */
     public static final int TYPE_TEMPERATURE = 5;
     
-    /** Sample type <b>TEMPERATURE</b>. Specifies the deco */
+    /** Sample type <b>DECO</b>. Specifies the deco */
     public static final int TYPE_DECO = 6;
     
     /** Sample type <b>PPO2</b>. Specifies the ppO2 3 sensors */
