@@ -2,7 +2,6 @@ package net.sf.jdivelog.model.garmin;
 
 import java.time.Instant;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
@@ -11,9 +10,9 @@ import java.util.TreeSet;
 import com.garmin.fit.DiveAlert;
 
 import net.sf.jdivelog.gui.resources.Messages;
-import net.sf.jdivelog.model.Equipment;
+//import net.sf.jdivelog.model.Equipment;
 import net.sf.jdivelog.model.JDive;
-import net.sf.jdivelog.model.Tank;
+//import net.sf.jdivelog.model.Tank;
 import net.sf.jdivelog.model.udcf.Dive;
 import net.sf.jdivelog.model.udcf.Gas;
 
@@ -41,15 +40,15 @@ public class GarminFitAdapter extends TreeSet<JDive> {
       for (DepthProfileEntries dpe : dpel) {
          JDive dive = new JDive();
          Gas gas = new Gas(); // TODO check gas and add
-         Tank tank = new Tank();
-         Equipment equipment = new Equipment();
+         //Tank tank = new Tank();
+         //Equipment equipment = new Equipment();
 
          Dive depthProfile = convertDepthProfile(dpe, gas);
          depthProfile.addGas(gas);
          depthProfile.setDate(dpe.getDate());
 
          dive.setDate(dpe.getDate());
-         dive.setDepth(dpe.maxDepth());
+         dive.setDepth(Math.floor(dpe.maxDepth() * 100) / 100);
          dive.setDiveNumber(index + 1L);
          dive.setDuration(dpe.duration());
 
@@ -71,6 +70,7 @@ public class GarminFitAdapter extends TreeSet<JDive> {
     */
    private Dive convertDepthProfile(DepthProfileEntries profileEntries, Gas startingGas) {
       Dive result = new Dive();
+      long start = profileEntries.startPoint()*1000l;
       
       result.setSurfaceinterval("");
       result.setDensity(profileEntries.getM_water_density());
@@ -85,15 +85,17 @@ public class GarminFitAdapter extends TreeSet<JDive> {
       for(depthProfileEntry de : profileEntries.getDepthProfileEntries()) {
          result.addDepth(de.getM_depth().toString());
          result.addTemperature(de.getM_temperature().toString());
-         addAlarms(result, profileEntries.getM_alerts(), de.getM_timestamp());
+         //addAlarms(result, profileEntries.getM_alerts(), de.getM_timestamp()); // TODO add alerts
          
+         // compute time point
          Calendar calendar = Calendar.getInstance();
          calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
-         calendar.setTimeInMillis(de.getM_timestamp().toEpochMilli());
+         calendar.setTimeInMillis(de.getM_timestamp().toEpochMilli()-start);
          
-         result.addTime(convertTime(calendar.getTimeInMillis()/1000));
+         String tim = convertTime(calendar.getTimeInMillis()/1000);
+         result.addTime(tim);
          result.addCns(de.getM_cns_load().doubleValue());
-         result.addPPO2(null, de.getM_po2().toString());
+         result.addPPO2("pO2", de.getM_po2().toString()); // BUBU
          result.addDecoInfo(de.getM_depth().doubleValue(), Double.valueOf(de.getM_tts()), Double.valueOf(de.getM_ndl()));
       }
       

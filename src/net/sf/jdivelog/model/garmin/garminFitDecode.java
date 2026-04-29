@@ -145,8 +145,9 @@ public class garminFitDecode {
             dpe.setM_cns_load(rec.getCnsLoad().floatValue());
             dpe.setM_n2_load(rec.getN2Load().floatValue());
             dpe.setM_po2(rec.getPo2());
-            dpe.setM_ndl(rec.getNdlTime());
+            dpe.setM_ndl(rec.getNdlTime() == null ? 999 : rec.getNdlTime());
             dpe.setM_tts(rec.getTimeToSurface());
+            dpe.setM_next_stop(rec.getNextStopDepth());
             dpes.addEntry(dpe);
          }
          

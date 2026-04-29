@@ -31,10 +31,10 @@ public interface Sample {
     /** Sample type <b>DELTA</b>. Sampling rate has changed. */
     public static final int TYPE_DELTA=0;
     
-    /** Sample type <b>SIWTH</b>. Specifies a gas switch. */
+    /** Sample type <b>SWiTCH</b>. Specifies a gas switch. */
     public static final int TYPE_SWITCH=1;
     
-    /** Sample type <b>ALARM</b>. An alam has occured. */
+    /** Sample type <b>ALARM</b>. An alarm has occurred. */
     public static final int TYPE_ALARM=2;
     
     /** Sample type <b>D</b>. Specifies the depth at a given time. */

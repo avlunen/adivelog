@@ -20,6 +20,7 @@ public class depthProfileEntry {
    private Float m_po2;
    private Long m_ndl;
    private Long m_tts;
+   private Float m_next_stop;
    private Integer alarm;
    
    
@@ -88,6 +89,12 @@ public class depthProfileEntry {
    }
    public void setAlarm(Integer alarm) {
       this.alarm = alarm;
+   }
+   public Float getM_next_stop() {
+      return m_next_stop;
+   }
+   public void setM_next_stop(Float m_next_stop) {
+      this.m_next_stop = m_next_stop;
    }
 
 }

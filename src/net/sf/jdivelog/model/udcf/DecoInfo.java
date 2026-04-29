@@ -24,8 +24,8 @@ package net.sf.jdivelog.model.udcf;
 public class DecoInfo implements Sample {
 
     private Double depth;
-    private Double tfs;
-    private Double tts;
+    private Double tfs; // time to first stop
+    private Double tts; // time to surface
 
     public int getType() {
         return Sample.TYPE_DECO;

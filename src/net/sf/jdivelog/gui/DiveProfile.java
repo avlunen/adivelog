@@ -81,6 +81,7 @@ import net.sf.jdivelog.util.UnitConverter;
  * Canvas displaying a dive profile.
  * 
  * @author Pascal Pellmont <jdivelog@pellmont.dyndns.org>
+ * TODO maybe remove legend on the left and widen chart area
  */
 public class DiveProfile extends JComponent {
     private static final BasicStroke PPO2_STROKE = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 1, new float[] { 1, 3 }, 0);
@@ -544,7 +545,7 @@ public class DiveProfile extends JComponent {
         drawTempColorLabel(g, (int) (getGraphCoords().getX()), (int) (getGraphCoords().getY() + getGraphCoords().getHeight() + 45));
     }
 
-    private void drawTempColorLabel(Graphics2D g, int offsetx, int offsety) {
+    private void drawTempColorLabel(Graphics2D g, int offsetx, int offsety) { // TODO perhaps delete
         if (profileSettings.isShowTemperature() && drawTemp) {
             g.setColor(profileSettings.getTemperatureLabelColor());
 
@@ -731,7 +732,7 @@ public class DiveProfile extends JComponent {
         }
     }
 
-    private void drawTemperatureGraph(Graphics2D g) {
+    private void drawTemperatureGraph(Graphics2D g) { // TODO look into improving
         if (!comparisonProfile && profileSettings.isShowTemperature() && (temperatures == null || temperatures.size() > 0)) {
             if (dive.getTemperature() != null && dive.getSurfaceTemperature() != null) {
                 drawTemp = true;

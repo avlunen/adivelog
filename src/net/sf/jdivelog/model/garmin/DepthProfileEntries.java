@@ -87,6 +87,17 @@ public class DepthProfileEntries {
    }
 
    /**
+    * Function to return the time stamp of the first data point in epoch seconds
+    * @return long
+    */
+   public long startPoint() {
+      LongSummaryStatistics sin = depthProfileEntries.stream()
+            .mapToLong(depthProfileEntries -> depthProfileEntries.getM_timestamp().getEpochSecond())
+            .summaryStatistics();
+      
+      return sin.getMin();
+   }
+   /**
     * Get the date of the dive
     * 
     * @return Date
